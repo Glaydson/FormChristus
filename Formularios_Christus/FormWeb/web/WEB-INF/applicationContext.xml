@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <http auto-config="true" access-denied-page="/login.xhtml">
+        <form-login login-page="/login.xhtml" authentication-failure-url="/login.xhtml?erro=true"/>
+        <intercept-url pattern="/index.xhtml" access="ROLE_INTEGRADO" />
+        <intercept-url pattern="/01/**" access="ROLE_INTEGRADO" />
+
+    </http>
+
+
+
+
+    <authentication-manager>
+        <!--        <authentication-provider>
+            <password-encoder hash="md5"/>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT u.usu_documento ,u.usu_senha,u.pes_acesso from controle_acesso.usuario u
+                                                            WHERE  (u.pes_acesso = TRUE) and (u.usu_documento = ?) "
+                               authorities-by-username-query="SELECT  us.usuario_usu_documento,'ROLE_' || sis.sis_sigla as grp from  controle_acesso.sistema sis
+                                 INNER JOIN public.usuario_sistema us on (us.sistemas_sis_id = sis.sis_id)
+                                                                      and (us.usuario_usu_documento = ?)                                                                      "
+            />
+        </authentication-provider>-->
+        <authentication-provider>
+            <user-service>
+                <user name="adm" password="123" authorities="ROLE_INTEGRADO" />
+            </user-service>
+        </authentication-provider>
+
+    </authentication-manager>
+    <!--    <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+        <b:property name="url" value="jdbc:postgresql://localhost:5432/integrado" />
+        <b:property name="driverClassName" value="org.postgresql.Driver" />
+        <b:property name="username" value="postgres" />
+        <b:property name="password" value="postgres" />
+    </b:bean>-->
+
+
+
+</b:beans>
+
+
+
