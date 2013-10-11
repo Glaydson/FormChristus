@@ -23,17 +23,16 @@
                     <p:growl showDetail="true" showSummary="true" autoUpdate="true" globalOnly="true"/>
                 </h:form>
             </p:layoutUnit>
-            <center>
-                <p:layoutUnit id="center" position="center"   >
-                    <scgb:menuJSF/>
-                    <p:panel footer="Usuário logado: ">
-                        <h:form id="frmGeral">
-                            <p:messages showDetail="true" closable="true" showSummary="true" autoUpdate="true" />
-                            <ui:insert name="corpo"></ui:insert>
-                        </h:form>
-                    </p:panel>
-                </p:layoutUnit>
-            </center>
+            <p:layoutUnit   id="center" position="center"   >
+                <h:panelGrid width="100%" columns="2"  id="grdGeral">
+                    <h:panelGrid width="100%">
+                        <scgb:menuJSF/>
+                    </h:panelGrid>
+                    <h:panelGrid width="100%" >                      
+                        <ui:insert name="corpo"></ui:insert>
+                    </h:panelGrid>                  
+                </h:panelGrid>
+            </p:layoutUnit>
             <p:layoutUnit position="south" size="50">
             </p:layoutUnit>
         </p:layout>

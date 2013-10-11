@@ -30,7 +30,7 @@ a:link:hover, a:visited:hover  {
 .painelPadrao{
     min-height: 300px;
     width: 900px;
-    background: #E0EEEE;
+    /*background: #E0EEEE;*/
 }
 
 .menu{

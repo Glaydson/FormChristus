@@ -28,7 +28,7 @@ public class DAO<T> extends DaoGenerico<T, Serializable> implements Serializable
 
     @Override
     public void salvar(T t) throws SQLException, PersistenceException, EJBException, Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       em.persist(t);
     }
 
     @Override

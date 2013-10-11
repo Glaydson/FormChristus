@@ -3,10 +3,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 template="/modelo/template.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="corpo">
-        <p:outputLabel value="Ops! Essa página não foi encontrada no servidor!" title="você pode contactar o administrador do sistema para verificar o erro." styleClass="erro404" rendered="#{param.erro404}"/>
+
+        <p:panel style="text-align: center;height: 400px;width: 950px" header="Sistema de Automatização de Formulários" styleClass="painelPadrao"  footer="Usuário logado: ">
+            <p:messages closable="true" id="msg"/>                
+            <h:form   id="frmGeral">
+                <center>
+                    <ui:include src="#{beanUtilitario.pagina}"/>
+                </center>
+            </h:form>
+        </p:panel>
 
     </ui:define>
 </ui:composition>

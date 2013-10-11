@@ -10,19 +10,19 @@
         <locale-config>
             <default-locale>pt_BR</default-locale>
         </locale-config>
-        <!--        <resource-bundle>
+        <resource-bundle>
             <base-name>label</base-name>
             <var>label</var>
         </resource-bundle>
-        <message-bundle>label</message-bundle>-->
+        <message-bundle>label</message-bundle>
     </application>
-    <!--    <application>
+    <application>
         <resource-bundle>
             <base-name>navegacao</base-name>
             <var>navegacao</var>
         </resource-bundle>
         <message-bundle>navegacao</message-bundle>
-    </application>
+    </application><!--
     <converter>
         <converter-for-class>java.lang.Enum</converter-for-class>
         <converter-class>javax.faces.convert.EnumConverter</converter-class>
