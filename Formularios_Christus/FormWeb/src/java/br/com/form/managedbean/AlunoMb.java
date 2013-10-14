@@ -46,7 +46,6 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
     private BeanUtilitario beanUtilitario;
     @EJB
     private AlunoControle controle;
-    
     private List<Aluno> listaAlunos;
     private Aluno aluno;
     private Sexo sexo;
@@ -66,8 +65,6 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
         listaAlunos = new ArrayList<>();
         pessoa = new Pessoa();
     }
-    
-   
 
     @Override
     public void salvar() {
@@ -92,12 +89,12 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
             Logger.getLogger(AlunoMb.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public void fecharDialog(Curso c) {
+
+    public void fecharDialog(Curso c) {
         aluno.setCurso(c);
         RequestContext.getCurrentInstance().closeDialog(this);
     }
-    
+
     public void dialogCustomized(String d) {
         Map<String, Object> options = new HashMap<String, Object>();
         options.put("modal", true);
@@ -121,14 +118,16 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
     }
 
     public void validateTamSen(FacesContext context, UIComponent toValidate, Object value) {
-                if (value.toString().length() < 6) {
+        if (value.toString().length() < 6) {
             ((UIInput) toValidate).setValid(false);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Senha menor que 6 digitos!", null);
             context.addMessage(toValidate.getClientId(context), message);
-        }else{
+        } else {
             aluno.setSenha(value.toString());
         }
     }
+
+   
 
     @Override
     public void excluir() {

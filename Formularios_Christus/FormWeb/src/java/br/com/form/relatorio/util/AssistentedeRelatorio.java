@@ -141,12 +141,12 @@ public class AssistentedeRelatorio implements Serializable {
     public byte[] relatorioemByte(List lista, Map<String, Object> parametros, String arquivo, String nomeRelatorio) {
         byte[] b = null;
         try {
-            parametros.put("img", getDiretorioReal("WEB-INF//relatorios//imagens//int.png"));
-            parametros.put("relatorio", nomeRelatorio);
-            parametros.put("SUBREPORT_DIR", getDiretorioReal("WEB-INF/relatorios") + "/");
+            parametros.put("img", getDiretorioReal("WEB-INF//formularios//imagens//logo.png"));
+            parametros.put("form", nomeRelatorio);
+            parametros.put("SUBREPORT_DIR", getDiretorioReal("WEB-INF/formularios") + "/");
             parametros.put("REPORT_LOCALE", new Locale("pt", "BR"));
-            parametros.put("rodapeEmail", "fhnogueira@gmail.com");
-            parametros.put("rodapeFone", "(85) 3011-0661");
+//            parametros.put("rodapeEmail", "fhnogueira@gmail.com");
+//            parametros.put("rodapeFone", "(85) 3011-0661");
             String rel = getDiretorioReal(arquivo);
             JRDataSource jrRS = new JRBeanCollectionDataSource(lista);
             JasperPrint print = JasperFillManager.fillReport(rel, parametros, jrRS);

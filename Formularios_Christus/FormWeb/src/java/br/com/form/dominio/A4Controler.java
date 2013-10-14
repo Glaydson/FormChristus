@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
  * @author Ari
  */
 @Stateless
-public class A4Controler  extends ControleGenerico<A4, Long>{
+public class A4Controler  extends ControleGenerico<A4, Long> implements Serializable{
     
     @EJB
     private A4Dao dao;

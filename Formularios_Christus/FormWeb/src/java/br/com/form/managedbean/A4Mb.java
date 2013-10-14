@@ -25,6 +25,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -32,8 +33,8 @@ import javax.persistence.PersistenceException;
  */
 @ManagedBean
 @ViewScoped
-public class A4Mb extends BeanGenerico<A4> implements Serializable{
-    
+public class A4Mb extends BeanGenerico<A4> implements Serializable {
+
     @Inject
     private BeanUtilitario beanUtilitario;
     @EJB
@@ -42,10 +43,11 @@ public class A4Mb extends BeanGenerico<A4> implements Serializable{
     private AlunoControle alunoControle;
     private A4 a4;
     private List<A4> listaA4;
-    
-    public A4Mb(){
+
+    public A4Mb() {
         super(A4.class);
     }
+
     @PostConstruct
     @Override
     public void iniciar() {
@@ -68,7 +70,8 @@ public class A4Mb extends BeanGenerico<A4> implements Serializable{
     public void salvar() {
         try {
             controler.salvar(a4);
-          //  iniciar();
+            impressao();
+            iniciar();
             addMenssagemCadastroInfo("Formulário");
         } catch (SQLException ex) {
             Logger.getLogger(A4Mb.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,15 +83,32 @@ public class A4Mb extends BeanGenerico<A4> implements Serializable{
             Logger.getLogger(A4Mb.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-      public void impressao() {
-     //   if (!a4.isEmpty()) {
-          List<A4> l = new ArrayList<>();
-          l.add(a4);
-            Map<String, Object> m = new HashMap<>();
-            byte[] rel = new AssistentedeRelatorio().relatorioemByte(l, m, "WEB-INF/fomularios/a4.jasper", "Relatório de Vendas por Tipo");
-            RelatorioSession.setBytesRelatorioInSession(rel);
-       // }
+
+    public void impressao() {
+        List<A4> l = new ArrayList<>();
+        l.add(a4);
+        Map<String, Object> m = new HashMap<>();
+        byte[] rel = new AssistentedeRelatorio().relatorioemByte(l, m, "WEB-INF/formularios/a4.jasper", "A4");
+        RelatorioSession.setBytesRelatorioInSession(rel);
+
+    }
+
+    public void fecharDialog() {
+        RequestContext.getCurrentInstance().closeDialog(this);
+    }
+
+    public void dialogCustomized(String d) {
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put("modal", true);
+        options.put("draggable", false);
+        options.put("resizable", false);
+        options.put("contentHeight", 320);
+        options.put("closable", false);
+        //RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,"Teste","Tes"));
+
+        //hint: available options are modal, draggable, resizable, width, height, contentWidth and contentHeight
+
+        RequestContext.getCurrentInstance().openDialog(d + ".xhtml", options, null);
     }
 
     @Override
@@ -121,5 +141,4 @@ public class A4Mb extends BeanGenerico<A4> implements Serializable{
     public void setListaA4(List<A4> listaA4) {
         this.listaA4 = listaA4;
     }
-    
 }

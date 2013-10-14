@@ -18,8 +18,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 /**
  * Data de criação 02/10/2013
@@ -43,6 +46,32 @@ public class A4 implements Serializable {
     @Column(name = "a4_data", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date data;
+    @NotNull
+    @NotEmpty
+    @Column(name = "a4_local",nullable = false)
+    private String local;
+    @NotNull
+    @NotEmpty
+    @Column(name = "a4_instituicao",nullable = false)
+    private String instituicao;
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getInstituicao() {
+        return instituicao;
+    }
+
+    public void setInstituicao(String instituicao) {
+        this.instituicao = instituicao;
+    }
+    
+    
 
     public Long getId() {
         return id;
