@@ -9,6 +9,7 @@ import br.com.form.enumerated.Turno;
 import static br.com.form.managedbean.BeanMenssagem.addMenssagemErro;
 import br.com.form.modelo.Curso;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,8 +19,12 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceException;
 
 /**
@@ -76,13 +81,26 @@ public class CursoMb extends BeanGenerico<Curso> implements Serializable {
 
     @Override
     public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            listaCursos = controle.listarTodos("nome");
+        } catch (SQLException ex) {
+            Logger.getLogger(CursoMb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(CursoMb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (EJBException ex) {
+            Logger.getLogger(CursoMb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CursoMb.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void selecionar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+    
 
     public List<Turno> getTurnos() {
         return Arrays.asList(Turno.values());

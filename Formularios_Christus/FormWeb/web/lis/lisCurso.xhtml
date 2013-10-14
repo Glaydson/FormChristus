@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition template="/modelo/dialog.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="dialog">
+        <p:panel header="Lista de Cursos">
+            <p:commandButton value="Pesquisar" action="#{cursoMb.listar()}" update="tblCur"/>
+            <p:dataTable id="tblCur"   paginator="true" paginatorAlwaysVisible="false" rows="10"  emptyMessage="Nenhum registro encontrado" var="item" value="#{cursoMb.listaCursos}"
+                         rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}" rowIndexVar="rowIx">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}"/>
+                </p:column>
+                <p:column headerText="Turno">
+                    <h:outputText value="#{item.turno}"/>
+                </p:column>
+                 <p:column headerText="Açao">
+                     <p:commandButton title="Selecionar"  icon="ui-icon-check" actionListener="#{alunoMb.fecharDialog(item)}"/>
+                      
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+</ui:composition>

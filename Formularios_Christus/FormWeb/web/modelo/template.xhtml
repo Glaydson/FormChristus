@@ -16,27 +16,25 @@
         <h:outputScript name="calendario_pt_BR.js" library="script" />
     </h:head>
     <h:body>
-
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="50" style="border: white;">
                 <h:form>
                     <p:growl showDetail="true" showSummary="true" autoUpdate="true" globalOnly="true"/>
                 </h:form>
             </p:layoutUnit>
-            <p:layoutUnit   id="center" position="center"   >
+            <p:layoutUnit   id="center" position="center"  style="width: 100%;text-align: center" header="Sistema de Automatização de Formulários"  >
                 <h:panelGrid width="100%" columns="2"  id="grdGeral">
                     <h:panelGrid width="100%">
                         <scgb:menuJSF/>
                     </h:panelGrid>
-                    <h:panelGrid width="100%" >                      
-                        <ui:insert name="corpo"></ui:insert>
+                    <h:panelGrid  >                      
+                        <ui:insert name="corpo" ></ui:insert>
                     </h:panelGrid>                  
                 </h:panelGrid>
             </p:layoutUnit>
             <p:layoutUnit position="south" size="50">
             </p:layoutUnit>
         </p:layout>
-        <ui:insert name="dialogs">
-        </ui:insert>
+        
     </h:body>
 </ui:composition>

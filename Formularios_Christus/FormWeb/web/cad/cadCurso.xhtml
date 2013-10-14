@@ -6,36 +6,43 @@
              xmlns:h="http://java.sun.com/jsf/html"
              xmlns:f="http://java.sun.com/jsf/core">
 
-    <p:panel styleClass="painelPadrao" header="Cadastro de Curso">
-        <h:form>
-            <h:panelGrid width="100%" id="grd">
-                 <h:panelGrid width="100%">
+  
+    <h:form>
+        <h:panelGrid width="100%" id="grd">
+
+            <h:panelGrid width="100%">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Código"/>
+                </h:panelGrid>
+                <p:inputText id="curId" size="7" disabled="true"  value="#{cursoMb.curso.id}" />
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:panelGrid width="100%">
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Código"/>
+                        <p:outputLabel  value="Nome"/>
+                        <p:message for="curNome"  showDetail="true"  />
                     </h:panelGrid>
-                     <p:inputText id="curId" disabled="true"  value="#{cursoMb.curso.id}" />
+                    <p:inputText id="curNome" size="50" required="true"   value="#{cursoMb.curso.nome}" />
                 </h:panelGrid>
                 <h:panelGrid width="100%">
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Nome"/>
-                        <p:message for="curNome" showDetail="true"  />
+                        <p:outputLabel  value="Turno"/>
+                        <p:message for="curTur" showDetail="true"  />
                     </h:panelGrid>
-                    <p:inputText id="curNome" required="true" requiredMessage="Informe o nome"  value="#{cursoMb.curso.nome}" />
-                </h:panelGrid>
-                <h:panelGrid width="100%">
-                    <h:panelGrid columns="2">
-                        <p:outputLabel value="Turno"/>
-                        <p:message for="curNome" showDetail="true"  />
-                    </h:panelGrid>
-                    <p:selectOneMenu value="#{cursoMb.curso.turno}" style="width: 100px">
+                    <p:selectOneMenu id="curTur" required="true"  value="#{cursoMb.curso.turno}" style="width: 100px">
                         <f:selectItems value="#{cursoMb.turnos}" />
                     </p:selectOneMenu>
                 </h:panelGrid>
-                <p:commandButton value="Salvar" action="#{cursoMb.salvar()}"  update=":frmGeral,:grdGeral"/>
             </h:panelGrid>
-        </h:form>
 
-    </p:panel>
+        </h:panelGrid>
+        <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
+            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{cursoMb.salvar()}"   update=":frmGeral,:grdGeral"/>
+            <p:commandButton icon="ui-icon-search" value="Listagem" />
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" />
+        </h:panelGrid>
+    </h:form>
+
 
 
 </ui:fragment>

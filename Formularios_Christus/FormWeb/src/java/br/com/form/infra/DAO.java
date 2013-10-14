@@ -43,12 +43,13 @@ public class DAO<T> extends DaoGenerico<T, Serializable> implements Serializable
 
     @Override
     public T carregar(Serializable id) throws SQLException, PersistenceException, EJBException, Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return (T) em.find(getEntityClass(), id);
     }
 
     @Override
     public List<T> listarTodos(String ordem) throws SQLException, PersistenceException, EJBException, Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          return em.createQuery("FROM " + getEntityClass().getName() + " order by :ordem")
+                .setParameter("ordem", ordem).getResultList();
     }
 
     @Override

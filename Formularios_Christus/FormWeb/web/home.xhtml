@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:fragment xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core">
 
-   <p:panel styleClass="painelPadrao" header="Cadastro de Curso">
-        <h:form>
-           
-        </h:form>
+    <h:form>
+        <p:panel >
+            <p:commandButton value="A1"  update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['a4'],'Formulárop A4')}"/>
+        </p:panel>
+    </h:form>
 
-    </p:panel>
+
 </ui:fragment>

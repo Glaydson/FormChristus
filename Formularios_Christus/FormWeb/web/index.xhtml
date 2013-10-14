@@ -7,16 +7,14 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="corpo">
-
-        <p:panel style="text-align: center;height: 400px;width: 950px" header="Sistema de Automatização de Formulários" styleClass="painelPadrao"  footer="Usuário logado: ">
+        <p:panel id="pnlGeral" style="text-align: center;height: 400px;width: 950px" header="#{beanUtilitario.pnl}" styleClass="painelPadrao"  footer="Usuário logado: #{beanUtilitario.matricula}">
             <p:messages closable="true" id="msg"/>                
-            <h:form   id="frmGeral">
+            <h:form style="min-height: 330px"  id="frmGeral">
                 <center>
                     <ui:include src="#{beanUtilitario.pagina}"/>
                 </center>
             </h:form>
         </p:panel>
-
     </ui:define>
+    
 </ui:composition>
-
