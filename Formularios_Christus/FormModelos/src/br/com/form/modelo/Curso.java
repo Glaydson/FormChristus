@@ -17,6 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -35,8 +37,10 @@ public class Curso implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cur_id", nullable = false)
     private Integer id;
+    @NotNull
     @Column(name = "cur_nome", nullable = false, length = 255)
     private String nome;
+    @NotNull
     @Column(name = "cur_turno", nullable = false)
     @Enumerated(EnumType.STRING)
     private Turno turno;

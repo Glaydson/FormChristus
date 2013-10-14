@@ -21,7 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * @author Ari
  */
 @Entity
-@Table(name = "a1", schema = "formularios")
+@Table(name = "a1", schema = "formulario")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class A1 implements Serializable {
 

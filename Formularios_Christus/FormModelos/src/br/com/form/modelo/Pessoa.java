@@ -4,6 +4,7 @@
  */
 package br.com.form.modelo;
 
+import br.com.form.enumerated.Sexo;
 import br.com.form.enumerated.TipoPessoa;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,8 +22,21 @@ public class Pessoa {
     @Column(name = "pes_nome", nullable = false, length = 255, unique = true)
     private String nome;
     @Enumerated(EnumType.STRING)
-    @Column(name = "pes_sexo", nullable = false, length = 255, unique = true)
+    @Column(name = "pes_sexo", nullable = false)
     private Sexo sexo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pes_tipo", nullable = false)
+    private TipoPessoa tipoPessoa;
+
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+    
+    
 
     public String getNome() {
         return nome;

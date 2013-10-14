@@ -9,4 +9,5 @@ package br.com.form.enumerated;
 // * @author Ari
 // */
 public enum TipoPessoa {
+    PROFESSOR,ALUNO
 }

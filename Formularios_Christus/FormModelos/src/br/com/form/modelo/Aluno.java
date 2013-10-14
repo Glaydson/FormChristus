@@ -29,7 +29,7 @@ import org.hibernate.validator.constraints.Length;
 public class Aluno implements Serializable {
 
     @Id
-    @Length(min = 5, max = 5)
+    @Length(min = 9, max = 9)
     @Column(name = "alu_matricula", nullable = false, length = 5)
     private String matricula;
     @Embedded
@@ -39,7 +39,18 @@ public class Aluno implements Serializable {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cur_id", referencedColumnName = "cur_id", nullable = false)
     private Curso curso;
+    @Column(name = "alu_senha",length = 512)
+    private String senha;
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }  
+    
+    
     public Curso getCurso() {
         return curso;
     }
