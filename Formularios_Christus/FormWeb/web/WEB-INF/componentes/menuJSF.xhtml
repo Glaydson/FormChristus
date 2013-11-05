@@ -11,23 +11,24 @@ and open the template in the editor.
              xmlns:f="http://java.sun.com/jsf/core">
     <h:form>
         <p:panel header="Menu" style="height: 400px;">
-            <p:commandButton style="width: 177px" value="Inicio" action="#{beanUtilitario.navegar(navegacao['sistema.home'],'Formulários')}" update=":frmGeral,:pnlGeral" icon="ui-icon-home"/>
+            <p:commandButton style="width: 100%" value="Inicio" action="#{beanUtilitario.navegar(navegacao['sistema.home'],'Formulários')}" update=":frmGeral,:pnlGeral" icon="ui-icon-home"/>
             <p:panelMenu   >
                 <p:submenu label="Cadastros Basicos" >
-                    <p:menuitem value="Curso"   update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['cadCurso'],'Cadastro de Curso')}"/>
-                    <p:menuitem value="Aluno"   update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['cadAluno'],'Cadastro de Aluno')}"/>
+                    <p:submenu  label="Cadastros">
+                        <p:menuitem value="Curso"   update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['cadCurso'],'Cadastro de Curso')}"/>
+                        <p:menuitem value="Aluno"   update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['cadAluno'],'Cadastro de Aluno')}"/>
+                    </p:submenu>
                     <p:submenu  label="Listas">
                         <p:menuitem value="Curso"   update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['lisCurso'],'Lista de Curso')}"/>
 
                     </p:submenu>
                 </p:submenu>
                 <p:submenu  label="Formulários">
-                    <p:separator />
-                    <p:menuitem value="Sair"  global="false" icon="ui-icon-closethick" />
-                    <p:separator />
+                        <p:menuitem value="Curso"   update=":frmGeral,:pnlGeral"  action="#{beanUtilitario.navegar(navegacao['lisCurso'],'Lista de Curso')}"/>
+
                 </p:submenu>
             </p:panelMenu>
-            <p:commandButton style="width:177px" value="Sair"  global="false" icon="ui-icon-closethick"/>
+            <p:commandButton style="width: 100%" value="Sair"  global="false" icon="ui-icon-closethick"/>
         </p:panel>
     </h:form>
 </ui:fragment>
