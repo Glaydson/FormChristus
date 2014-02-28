@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:sef="http://sefin.ce.gov.br"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        </f:facet>
+        <link rel="shortcut icon"  href="../resources/imagens/logo.ico" />
+        <link rel="icon" type="image/png"  href="../resources/imagens/logo.ico" />
+        <h:outputStylesheet name="/estilo/default.css"/>
+        <h:outputStylesheet name="/estilo/pgerro.css"/>
+        <h:outputScript name="calendario_pt_BR.js" library="script" />
+        <title>#{mensagens['nome.sistema']}</title>
+    </h:head>
+    <h:body >
+
+        <p:layout fullPage="true" id="bd">
+            <p:layoutUnit id="top"   position="north" size="80" style="margin-top: 0px;margin-bottom: 0px;" collapseSize="20" >
+                <p:graphicImage  library="imagens" name="logo.png" />
+                <h:form>
+                    <p:growl showDetail="true" showSummary="true" autoUpdate="true" globalOnly="true"/>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="205" collapsible="true" header="Menu" style="text-align: center;">
+                <h:form>
+                    <p:commandButton style="width: 100%" value="Inicio" immediate="true" action="#{beanUtilitario.redirecionarPagina(navegacao['sistema.home'],'Formulários')}" update=":frmGeral" icon="ui-icon-home"/>
+
+                    <p:panelMenu>
+                        <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR">
+
+                            <p:submenu label="Cadastros Basicos" >
+                                <p:submenu  label="Cadastros">
+                                    <p:menuitem value="Campus"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadCampus'],'Cadastro de Campus')}"/>
+                                    <p:menuitem value="Curso"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadCurso'], 'Cadastro de Curso')}"/>
+                                    <p:menuitem value="Aluno"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadAluno'], label['cadAluno'])}"/>
+                                    <p:menuitem value="Professor"  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadProfessor'], label['cadProfessor'])}"/>
+                                    <p:menuitem value="Coordenador"  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadCoordenador'], label['cadCoordenador'])}"/>
+                                    <p:menuitem value="Tipo Ativ. Complem."  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadTipoAtividadeComplementar'], label['cadTipoAtividade'])}"/>
+                                    <p:menuitem value="Atividade Complem."  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadAtividadeComp'], label['cadAtividadeComp'])}"/>
+
+                                </p:submenu>
+                                <p:submenu  label="Listas">
+                                    <p:menuitem value="Campus"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisCampus'],label['lisCampus'])}"/>
+                                    <p:menuitem value="Cursos"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisCurso'],label['lisCurso'])}"/>
+                                    <p:menuitem value="Alunos"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisAlunos'],label['lisAlunos'])}"/>
+                                    <p:menuitem value="Professores"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisProfessores'],label['lisProfessores'])}"/>
+                                    <p:menuitem value="Coordenador"  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisCoordenadores'], label['lisCoordenadores'])}"/>
+                                    <p:menuitem value="Tipo Ativ. Complem."  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisTipoAtividadeComp'], label['lisTipoAtividade'])}"/>
+                                    <p:menuitem value="Atividade Complem."  update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisAtividadeComp'], label['lisAtividadeComp'])}"/>
+
+                                </p:submenu>
+                            </p:submenu>
+                        </sec:ifAnyGranted>
+                        <p:submenu  label="Formulários">
+                            <p:submenu  label="Cadastros">
+                                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_ALUNO">
+                                    <p:menuitem value="Itens dos Formularios"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadItemFormulario'],label['cadItemFormulario'])}"/>
+                                    <p:menuitem value="A4"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['formA4'],label['formA4'])}"/>
+                                    <p:menuitem value="A3"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['formA3'],label['formA3'])}"/>
+
+                                </sec:ifAnyGranted>
+                            </p:submenu>
+                            <p:submenu  label="Listas">
+                                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_ALUNO">
+                                    <p:menuitem value="A4"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA4'],label['lisFormA4'])}"/>
+                                </sec:ifAnyGranted>
+                            </p:submenu>
+
+                        </p:submenu>
+                    </p:panelMenu>
+                    <p:commandButton style="width: 100%" value="Sair" action="#{beanUtilitario.logout()}"  global="false" icon="ui-icon-closethick"/>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" style="text-align: center;" header="#{mensagens['nome.sistema']}" >
+
+                <h:form>
+                    <p:growl autoUpdate="true" showDetail="true" showSummary="true"/>
+                </h:form>
+
+                <p:panel footer="Matricula:#{beanUtilitario.usuarioLogado.login}" header="#{beanUtilitario.pnl}" id="formcenter" >
+                    <h:form id="frmGeral">
+                        <p:messages id="msg" autoUpdate="true" closable="true" showDetail="true" showSummary="true"/>
+                        <center>                            
+                            <ui:insert name="corpo"></ui:insert>
+                        </center>
+                    </h:form>
+                </p:panel>
+
+            </p:layoutUnit>
+            <!--            <p:layoutUnit id="bottom" position="south" size="30" style="width: 100%;">
+            
+                        </p:layoutUnit>-->
+
+
+        </p:layout>
+        <ui:insert name="dialogs">
+
+        </ui:insert>
+        <ui:insert name="btn">
+
+        </ui:insert>
+    </h:body>
+
+
+</ui:composition>

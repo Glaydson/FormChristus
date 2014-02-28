@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                template="/modelo/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <ui:define name="corpo">
+        <h:panelGrid  width="100%" id="grd" >
+            <h:panelGrid width="100%">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Código"/>
+                </h:panelGrid>
+                <p:inputText id="curId" size="7" disabled="true"  value="#{atividadeComplementarMb.atividadeComplementar.id}" />
+            </h:panelGrid>
+            <h:panelGrid columns="1" >
+                <h:panelGrid columns="1">
+                    <h:panelGrid width="100%">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="nome"  value="Nome"/>
+                            <p:message for="nome"  showDetail="true"  />
+                        </h:panelGrid>
+                        <p:inputText id="nome" size="70" required="true" requiredMessage="#{mensagens.require}"   value="#{atividadeComplementarMb.atividadeComplementar.nome}" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel  for="campus"  value="Campus"/>
+                                <p:message for="campus" showDetail="true"  />
+                            </h:panelGrid>
+                            <p:selectOneMenu id="campus" required="true" requiredMessage="#{mensagens.require}" effect="fade"   value="#{atividadeComplementarMb.atividadeComplementar.campus}" style="width: 230px" converter="#{converterCampus}">
+                                <f:selectItems value="#{campusMb.listaCampus}" var="cam" itemLabel="#{cam.nome}" itemValue="#{cam}" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="3">
+                                <p:outputLabel  for="tipo"  value="Tipo de Atividade"/>
+                                <p:message for="tipo" showDetail="true"  />
+                            </h:panelGrid>
+                            <p:selectOneMenu id="tipo" required="true" requiredMessage="#{mensagens.require}" effect="fade"   value="#{atividadeComplementarMb.atividadeComplementar.tipoAtividadeComplementar}" style="width: 230px" converter="#{converteTiporAtividadeComplementar}">
+                                
+                                <f:selectItems value="#{tipoAtividadeComplementarMb.listarSelect()}" var="cam" itemLabel="#{cam.nome}" itemValue="#{cam}" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:panelGrid>
+                <h:panelGrid columns="1">
+                    <h:panelGrid width="100%">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel  for="local" value="Local"/>
+                            <p:message for="local"  showDetail="true"  />
+                        </h:panelGrid>
+                        <p:inputText id="local" size="70" required="true" requiredMessage="#{mensagens.require}"    value="#{atividadeComplementarMb.atividadeComplementar.local}" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="ini"  value="Inicio"/>
+                                <p:message for="ini"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:calendar id="ini" pattern="dd/MM/yyyy HH:mm"  navigator="true" showButtonPanel="true" effect="fade" required="true" requiredMessage="#{mensagens.require}" value="#{atividadeComplementarMb.atividadeComplementar.inicio}"/>
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel  for="fim" value="Fim"/>
+                                <p:message for="fim"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:calendar id="fim" pattern="dd/MM/yyyy HH:mm"  navigator="true" showButtonPanel="true" effect="fade" required="true" requiredMessage="#{mensagens.require}" value="#{atividadeComplementarMb.atividadeComplementar.fim}"/>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:panelGrid>
+
+            </h:panelGrid>
+
+        </h:panelGrid>
+        <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
+            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{atividadeComplementarMb.salvar()}"   update="grd"/>
+            <p:commandButton icon="ui-icon-search" value="Listagem" immediate="true" action="#{beanUtilitario.redirecionarPagina(navegacao['lisAtividadeComp'], label['lisAtividadeComp'])}" />
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" action="#{atividadeComplementarMb.iniciar()}" >
+                <p:resetInput target=":frmGeral:grd"/>
+            </p:commandButton>
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
