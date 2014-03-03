@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition template="/modelo/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="corpo">
+        <h:outputScript name="script/navegacao.js"/>
+        <p:panel styleClass="painelPadrao">
+            <p:blockUI block="grd" trigger="btnListar,tabela:btnImprimir" widgetVar="bui">
+                <p:graphicImage  library="imagens" name="logo.png" />
+            </p:blockUI>
+            <p:focus/>
+            <h:panelGrid width="100%" id="grd">
+                <p:fieldset legend="Consulta">
+                    <h:panelGrid columns="4">
+                        <h:panelGrid>
+                            <p:spacer width="15"/>
+                            <h:panelGrid columns="2">
+                                <p:commandButton action="#{formularioA4Mb.listarPorAluno(formularioA4Mb.formularioA4.aluno)}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
+                                <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['formA4'], label['formA4'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:fieldset>
+                <p:dataTable value="#{formularioA4Mb.listaFormularioA4}" id="tabela" paginatorAlwaysVisible="false" paginator="true" var="t" rows="10" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}" 
+                             rowIndexVar="rowIx" emptyMessage="Nenhum valor encontrado">
+                    
+                    <p:column headerText="Atividade" sortBy="#{t.atividade.nome}">
+                        <h:outputText value="#{t.atividade.nome}"/>
+                    </p:column>
+                    <p:column headerText="Local" sortBy="#{t.atividade.local}">
+                        <h:outputText value="#{t.atividade.local}"/>
+                    </p:column>
+                    <p:column headerText="Local" sortBy="#{t.atividade.inicio}">
+                        <h:outputText value="#{t.atividade.inicio}">
+                              <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Local" sortBy="#{t.atividade.fim}">
+                        <h:outputText value="#{t.atividade.fim}">
+                              <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Ação" width="10%">
+                        <p:commandButton icon="ui-icon-pencil" style="width: 20px;height: 20px;" immediate="true" title="Editar" action="#{beanUtilitario.redirecionar(navegacao['formA4'], 'a4', t, label['formA4'])}"/>
+                        <p:commandButton icon="ui-icon-print" id="btnImprimir" style="width: 20px;height: 20px;" onclick="bui.show()" immediate="true" title="Imprimir" action="#{formularioA4Mb.selecionarFomulario(t)}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf');bui.hide()">
+                            <f:setPropertyActionListener value="#{t}" target="#{formularioA4Mb.formularioA4}"/>
+                        </p:commandButton>
+
+                    </p:column>
+                </p:dataTable>
+            </h:panelGrid>
+        </p:panel>
+    </ui:define>
+</ui:composition>

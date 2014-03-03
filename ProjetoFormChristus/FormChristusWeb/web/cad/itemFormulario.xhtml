@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                template="/modelo/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <ui:define name="corpo">
+
+        <h:panelGrid  width="100%" id="grd" >
+            <h:panelGrid width="100%">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Código"/>
+                </h:panelGrid>
+                <p:inputText id="curId" size="7" disabled="true"  value="#{itemFormularioMb.itemFormulario.id}" />
+            </h:panelGrid>
+            <h:panelGrid >
+                <h:panelGrid columns="2">
+
+                    <h:panelGrid width="100%">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="ques" value="Questão"/>
+                            <p:message for="ques"  showDetail="true"  />
+                        </h:panelGrid>
+                        <p:inputText  id="ques" size="3"  required="true"   requiredMessage="#{mensagens.require}" value="#{itemFormularioMb.itemFormulario.questao}"  >
+                            <f:convertNumber type="number"/>
+                        </p:inputText>
+                    </h:panelGrid>
+                    <h:panelGrid width="100%">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="form"  value="Formulario"/>
+                            <p:message for="form" showDetail="true"  />
+                        </h:panelGrid>
+                        <p:selectOneMenu id="form" required="true" effect="fade"   value="#{itemFormularioMb.itemFormulario.tipoFormulario}" style="width: 230px" >
+                            <f:selectItems value="#{itemFormularioMb.tiposFormulario}"  />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </h:panelGrid>
+                <h:panelGrid width="100%">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel for="des" value="Descrição"/>
+                        <p:message for="des"  showDetail="true"  />
+                    </h:panelGrid>
+                    <p:inputTextarea id="des" rows="5" cols="50" maxlength="255"  required="true"   requiredMessage="#{mensagens.require}" value="#{itemFormularioMb.itemFormulario.descricao}" />
+                </h:panelGrid>
+
+
+            </h:panelGrid>
+
+        </h:panelGrid>
+        <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
+            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{itemFormularioMb.salvar()}"   update="grd"/>
+            <p:commandButton icon="ui-icon-search" value="Listagem" immediate="true" action="#{beanUtilitario.redirecionarPagina(navegacao['lisItemFormulario'], label['lisItemFormulario'])}" />
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" action="#{tipoAtividadeComplementarMb.iniciar()}" >
+                <p:resetInput target=":frmGeral:grd"/>
+            </p:commandButton>
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
