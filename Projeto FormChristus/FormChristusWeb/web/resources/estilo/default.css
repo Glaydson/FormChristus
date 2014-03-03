@@ -11,7 +11,16 @@ body {
     color: #000000;
     margin: 0px;
 }
-
+.cabecalho{
+    margin: 0px;
+    padding: 0px;
+    border: black solid 1px;
+    background: #FFFFFF url(resources/imagens/img01.png) repeat-x;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    background-color: black;
+}
 a{
     text-decoration: none;
 }
@@ -73,6 +82,7 @@ a:link:hover, a:visited:hover  {
     -webkit-border-radius: 3px; /* valor do arredondamento das pontas do botão */
     -goog-ms-border-radius: 3px; /* valor do arredondamento das pontas do botão */
     border-radius: 3px; /* valor do arredondamento das pontas do botão */
+
 }
 
 .link-botao:hover {
@@ -101,4 +111,42 @@ a:link:hover, a:visited:hover  {
 
 .ui-datatable .ui-datatable-data .odd-row td{
     background-color: white;
+}
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+    color: #fff
+}
+.form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+#global {
+    margin: 0 auto; /* Alinhando o layout no centro */
+    width: 800px; /* Tamanho do layout */
+}
+#topo, #rodape {
+    width:100%;
+}
+#conteudo {
+    display:inline; /* Evita o bug da margem duplicada */
+    float:left; /* Flutuando à esquerda */
+    width:560px;
+
 }

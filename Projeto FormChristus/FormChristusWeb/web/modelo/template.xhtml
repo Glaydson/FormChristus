@@ -8,7 +8,7 @@ and open the template in the editor.
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:sef="http://sefin.ce.gov.br"
+                xmlns:comp="http://componentes"
                 xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
     <h:head>
@@ -23,11 +23,11 @@ and open the template in the editor.
         <h:outputScript name="calendario_pt_BR.js" library="script" />
         <title>#{mensagens['nome.sistema']}</title>
     </h:head>
-    <h:body >
+    <h:body  >
 
         <p:layout fullPage="true" id="bd">
             <p:layoutUnit id="top"   position="north" size="80" style="margin-top: 0px;margin-bottom: 0px;" collapseSize="20" >
-                <p:graphicImage  library="imagens" name="logo.png" />
+                <comp:cabecalhoJsf/>
                 <h:form>
                     <p:growl showDetail="true" showSummary="true" autoUpdate="true" globalOnly="true"/>
                 </h:form>
@@ -90,7 +90,7 @@ and open the template in the editor.
                     <p:growl autoUpdate="true" showDetail="true" showSummary="true"/>
                 </h:form>
 
-                <p:panel footer="Matricula:#{beanUtilitario.usuarioLogado.login}" header="#{beanUtilitario.pnl}" id="formcenter" >
+                <p:panel style="background: url(resources/imagens/01.png)" footer="Matricula:#{beanUtilitario.usuarioLogado.login}" header="#{beanUtilitario.pnl}" id="formcenter" >
                     <h:form id="frmGeral">
                         <p:messages id="msg" autoUpdate="true" closable="true" showDetail="true" showSummary="true"/>
                         <center>                            
