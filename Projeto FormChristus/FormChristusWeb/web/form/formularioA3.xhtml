@@ -12,29 +12,32 @@
         <p:blockUI block=":frmGeral" trigger="btnSalvar" widgetVar="bui">
             <p:graphicImage  library="imagens" name="logo.png" />
         </p:blockUI>
-        <p:watermark for="qt1" value="Faça um breve relatório da atividade desenvolvida, ressaltando os pontos considerados mais importantes para sua formação profissional"/>
-        <p:watermark for="qt2" value="Que aspectos poderiam ter sido melhor abordados na atividade"/>
 
-        <h:panelGrid columns="2" width="100%">
-            <h:panelGrid width="100%"   id="grd">
-                <h:panelGrid  columns="2">
-                    <h:panelGrid width="100%">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel value="Matricula"/>
-                            <p:message for="a4Mat"  showDetail="true"  />
+        <p:wizard flowListener="#{formularioA3Mb.onFlowProcess}" backLabel="Voltar" nextLabel="Proximo">  
+            <p:tab id="pes" title="Dados Pessoais">
+                <p:panel>
+
+                    <h:panelGrid  columns="1" width="100%">
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Matricula"/>
+                                <p:message for="a4Mat"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputText id="a4Mat" size="10"  disabled="true" maxlength="9" required="true" value="#{formularioA3Mb.formularioA3.aluno.matricula}" />
                         </h:panelGrid>
-                        <p:inputText id="a4Mat" size="10"  disabled="true" maxlength="9" required="true" value="#{formularioA3Mb.formularioA3.aluno.matricula}" />
-                    </h:panelGrid>
-                    <h:panelGrid width="100%">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel value="Nome"/>
-                            <p:message for="alNomr"  showDetail="true"  />
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Nome"/>
+                                <p:message for="alNomr"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputText id="alNomr" size="52"   disabled="true" required="true" value="#{formularioA3Mb.formularioA3.aluno.pessoa.nome}" />
                         </h:panelGrid>
-                        <p:inputText id="alNomr" size="52"   disabled="true" required="true" value="#{formularioA3Mb.formularioA3.aluno.pessoa.nome}" />
                     </h:panelGrid>
-                </h:panelGrid>
-                <h:panelGrid  width="100%">
-                    <h:panelGrid columns="2">
+                </p:panel>
+            </p:tab>
+            <p:tab id="cur" title="Curso">
+                <p:panel>
+                    <h:panelGrid columns="2" width="100%">
                         <h:panelGrid width="100%">
                             <h:panelGrid columns="2">
                                 <p:outputLabel for="curNome" value="Curso"/>
@@ -44,7 +47,6 @@
                                 <p:inputText id="curNome"  size="50" required="true" disabled="true" value="#{formularioA3Mb.formularioA3.aluno.curso.nome}" />
                             </h:panelGrid>
                         </h:panelGrid>
-
                     </h:panelGrid>
                     <h:panelGrid  width="100%" columns="2">
                         <h:panelGrid columns="2">
@@ -60,83 +62,151 @@
                                 </h:panelGrid>
                             </h:panelGrid>
                         </h:panelGrid>
-
                     </h:panelGrid>
-                    <h:panelGrid title="Considerando o perfil objetivado pelo curso, marque os itens contemplados pela atividade"  width="100%">
-                        <h:panelGrid columns="2">
-                            <h:panelGrid id="qt5"  columns="1">
-                                <p:outputLabel value="Selecione os itens contemplados pela atividade"/>
-                                <p:dataTable value="#{professorMb.professor.cursos}" id="tabelaQt5" paginatorAlwaysVisible="false" paginator="true" var="t" rows="10" 
-                                             rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}" rowIndexVar="rowIx" emptyMessage="#{mensagens.emptyMessage}">
-                                    <p:column  width="310" >
-                                        <h:outputText value="#{t.nome}"/>
-                                    </p:column>
-                                </p:dataTable>
-                            </h:panelGrid>
-                            <p:commandButton  icon="ui-icon-search" title="Lista de curso"   immediate="true" onclick="dialogConsultaCurso.show()"  update=":frmGeral"/>
+                </p:panel>
+            </p:tab>
+            <p:tab id="ques01" title="Questionario 01">
+                <p:panel>
 
+                    <p:watermark for="qt2" value="Que aspectos poderiam ter sido melhor abordados na atividade"/>
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="qt1" value="01)"/>
+                                <p:message for="qt1"  showDetail="true"  />
+                            </h:panelGrid>
+                            <h:panelGrid columns="2">
+                                <p:inputTextarea id="qt1" placeholder="Faça um breve relatório da atividade desenvolvida, ressaltando os pontos considerados mais importantes para sua formação profissional"  
+                                                 rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="qt2" value="02)"/>
+                                <p:message for="qt2"  showDetail="true"  />
+                            </h:panelGrid>
+                            <h:panelGrid columns="2">
+                                <p:inputTextarea id="qt2"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao2}" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="qt3" value="03)"/>
+                                <p:message for="qt3"  showDetail="true"  />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <p:inputTextarea id="qt3"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="qt4" value="04)"/>
+                                <p:message for="qt4"  showDetail="true"  />
+                            </h:panelGrid>
+                            <h:panelGrid columns="2">
+                                <p:inputTextarea id="qt4"  placeholder="" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+            <p:tab id="ques02" title="Questionário 02">
+                <p:panel>
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGrid id="qt5"  columns="1">
+                            <h:panelGrid columns="2">
+                                &rArr;  <p:outputLabel for="grid"  value="Selecione os itens contemplados pela atividade"/>
+
+                            </h:panelGrid>
+                            <p:selectManyCheckbox id="grid" value="#{formularioA3Mb.formularioA3.itensQuestao5}" layout="pageDirection" columns="3" converter="#{converterItemFormulario}">  
+                                <f:selectItems value="#{formularioA3Mb.listaQues5()}" var="q5" itemLabel="#{q5.descricao}"  itemValue="#{q5}"/>  
+                            </p:selectManyCheckbox> 
                         </h:panelGrid>
 
-                        <h:panelGrid columns="2">
-                            <h:panelGrid id="qt6"  columns="1">
-                                <p:outputLabel value="Selecione os itens contemplados pela atividade"/>
-                                <p:dataTable value="#{professorMb.professor.cursos}" id="tabelaQt6" paginatorAlwaysVisible="false" paginator="true" var="t" rows="10" 
-                                             rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}" rowIndexVar="rowIx" emptyMessage="#{mensagens.emptyMessage}">
-                                    <p:column  width="310" >
-                                        <h:outputText value="#{t.nome}"/>
-                                    </p:column>
-                                </p:dataTable>
-                            </h:panelGrid>
-                            <p:commandButton  icon="ui-icon-search" title="Lista de curso"   immediate="true" onclick="dialogConsultaCurso.show()"  update=":frmGeral"/>
+                    </h:panelGrid>
+
+                </p:panel>
+            </p:tab>
+            <p:tab id="ques03" title="Questionário 03">
+                <h:panelGrid columns="2" width="100%">
+                    <h:panelGrid id="qt6"  columns="1">
+                        <h:panelGrid>
+                            &rArr;   <p:outputLabel for="grid6" value="Selecione os itens contemplados pela atividade"/>
                         </h:panelGrid>
+                        <p:selectManyCheckbox id="grid6" value="#{formularioA3Mb.formularioA3.itensQuestao6}" layout="pageDirection" converter="#{converterItemFormulario}" columns="3">  
+                            <f:selectItems value="#{formularioA3Mb.listaQues6()}" var="q6" itemLabel="#{q6.descricao}" />  
+                        </p:selectManyCheckbox> 
+                    </h:panelGrid>
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="Finalizar">
+                <h:panelGrid columns="2" width="100%">
+                    <h:panelGrid   columns="2">
+                        <p:outputLabel value="Aluno: "/>
+                        <p:outputLabel  value="#{formularioA3Mb.formularioA3.aluno.pessoa.nome}"/> 
+                    </h:panelGrid>
+                    <h:panelGrid   columns="2">
+                        <p:outputLabel  value="Matricula: "/>
+                        <p:outputLabel  value="#{formularioA3Mb.formularioA3.aluno.matricula}"/> 
+                    </h:panelGrid>
+                    <h:panelGrid   columns="2">
+                        <p:outputLabel value="Curso: "/>
+                        <p:outputLabel value="#{formularioA3Mb.formularioA3.aluno.curso.nome}"/> 
+                    </h:panelGrid>
+                    <h:panelGrid   columns="2">
+                        <p:outputLabel value="Atividade: "/>
+                        <p:outputLabel value="#{formularioA3Mb.formularioA3.atividade.nome}"/> 
+                    </h:panelGrid>
+                    <h:panelGrid   columns="2">
+                        <p:outputLabel value="Local: "/>
+                        <p:outputLabel value="#{formularioA3Mb.formularioA3.atividade.local}"/> 
+                    </h:panelGrid>
 
+                </h:panelGrid>
+                <h:panelGrid width="100%" columns="2">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel  value="01)"/>                   
+                        <p:inputTextarea  readonly="true"               rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="02)"/>
+                        <p:inputTextarea  readonly="true" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao2}" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel  value="03)"/>
+                        <p:inputTextarea  readonly="true"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel  value="04)"/>
+                        <p:inputTextarea readonly="true" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
                     </h:panelGrid>
                 </h:panelGrid>
 
-            </h:panelGrid>
-            <h:panelGrid>
-                <h:panelGrid width="100%">
-                    <h:panelGrid columns="2">
-                        <p:outputLabel for="qt1" value="01)"/>
-                        <p:message for="qt1"  showDetail="true"  />
+                <h:panelGrid columns="1">
+                    <h:panelGrid>
+                        <p:outputLabel  value="05)"/>
+                        <p:dataTable value="#{formularioA3Mb.formularioA3.itensQuestao5}" var="q5">
+                            <p:column>
+                                &rArr; <p:outputLabel value="#{q5.descricao}"/>
+                            </p:column>
+                        </p:dataTable>
                     </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:inputTextarea id="qt1"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
-                    </h:panelGrid>
-                </h:panelGrid>
-                <h:panelGrid width="100%">
-                    <h:panelGrid columns="2">
-                        <p:outputLabel for="qt2" value="02)"/>
-                        <p:message for="qt2"  showDetail="true"  />
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:inputTextarea id="qt2"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao2}" />
+                    <h:panelGrid>
+                        <p:outputLabel  value="06)"/>
+                        <p:dataTable value="#{formularioA3Mb.formularioA3.itensQuestao6}" var="q6">
+                            <p:column>
+                                &rArr;   <p:outputLabel value="#{q6.descricao}"/>
+                            </p:column>
+                        </p:dataTable>
                     </h:panelGrid>
                 </h:panelGrid>
-                <h:panelGrid width="100%">
-                    <h:panelGrid columns="2">
-                        <p:outputLabel for="qt3" value="03)"/>
-                        <p:message for="qt3"  showDetail="true"  />
-                    </h:panelGrid>
-                    <h:panelGrid columns="3">
-                        <p:inputTextarea id="qt3"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
-                    </h:panelGrid>
+                <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
+                    <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}"   update=":frmGeral"/>
+                    <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA4'], label['lisFormA4'])}" immediate="true" />
                 </h:panelGrid>
-                <h:panelGrid width="100%">
-                    <h:panelGrid columns="2">
-                        <p:outputLabel for="qt4" value="04)"/>
-                        <p:message for="qt4"  showDetail="true"  />
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:inputTextarea id="qt4"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
-                    </h:panelGrid>
-                </h:panelGrid>
-            </h:panelGrid>
-        </h:panelGrid>
-        <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
-            <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}"  oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf')"  update=":frmGeral"/>
-            <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA4'], label['lisFormA4'])}" immediate="true" />
-        </h:panelGrid>
+            </p:tab>
+        </p:wizard>
+
 
 
     </ui:define>

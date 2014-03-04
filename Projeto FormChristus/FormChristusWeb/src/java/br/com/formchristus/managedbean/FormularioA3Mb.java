@@ -7,8 +7,11 @@ package br.com.formchristus.managedbean;
 
 import br.com.formchristus.controller.AlunoController;
 import br.com.formchristus.controller.FormularioA3Controller;
+import br.com.formchristus.controller.ItemFormularioController;
+import br.com.formchristus.enumerated.TipoFormulario;
 import br.com.formchristus.modelo.Aluno;
 import br.com.formchristus.modelo.FormularioA3;
+import br.com.formchristus.modelo.ItemFormulario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import org.primefaces.event.FlowEvent;
 
 /**
  *
@@ -34,8 +38,11 @@ public class FormularioA3Mb extends BeanGenerico<FormularioA3> implements Serial
     private FormularioA3Controller controller;
     @EJB
     private AlunoController alunoController;
+    @EJB
+    private ItemFormularioController itemFormularioController;
     private FormularioA3 formularioA3;
     private List<FormularioA3> listaFormularioA3;
+    private List<ItemFormulario> listaItemFormularios;
 
     public FormularioA3Mb() {
         super(FormularioA3.class);
@@ -44,8 +51,9 @@ public class FormularioA3Mb extends BeanGenerico<FormularioA3> implements Serial
     @PostConstruct
     @Override
     public void iniciar() {
-       formularioA3 = (FormularioA3) beanUtilitario.getRegistroDoMap("a3", new FormularioA3());
+        formularioA3 = (FormularioA3) beanUtilitario.getRegistroDoMap("a3", new FormularioA3());
         listaFormularioA3 = new ArrayList<>();
+       // listaItemFormularios = itemFormularioController.listarQuestoes(TipoFormulario.A3);
         if (formularioA3.getId() == null) {
             try {
                 formularioA3.setAluno((Aluno) alunoController.carregar(beanUtilitario.getUsuarioLogado().getLogin()));
@@ -66,6 +74,17 @@ public class FormularioA3Mb extends BeanGenerico<FormularioA3> implements Serial
         }
     }
 
+    public String onFlowProcess(FlowEvent event) {
+        return event.getNewStep();
+    }
+
+    public List<ItemFormulario> listaQues5(){
+        return itemFormularioController.listarQuestoes(TipoFormulario.A3, 5);
+    }
+    public List<ItemFormulario> listaQues6(){
+        return itemFormularioController.listarQuestoes(TipoFormulario.A3, 6);
+    }
+    
     @Override
     public void excluir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -95,6 +114,14 @@ public class FormularioA3Mb extends BeanGenerico<FormularioA3> implements Serial
 
     public void setListaFormularioA3(List<FormularioA3> listaFormularioA3) {
         this.listaFormularioA3 = listaFormularioA3;
+    }
+
+    public List<ItemFormulario> getListaItemFormularios() {
+        return listaItemFormularios;
+    }
+
+    public void setListaItemFormularios(List<ItemFormulario> listaItemFormularios) {
+        this.listaItemFormularios = listaItemFormularios;
     }
 
 }

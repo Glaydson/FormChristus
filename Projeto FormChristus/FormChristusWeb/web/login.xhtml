@@ -1,28 +1,50 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./modelo/frmModLogin.xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-    <ui:define name="corpo">
-        <!--<p:graphicImage url="resources/imagens/01.png" width="800" height="400">-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://componentes">
 
-            <!--<p:panel header="Acesso" visible="true"  closable="false" style="width: 250px;min-height: 100px;margin-top: 60px; margin-bottom: 50px "  >-->
-                <!--<h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>-->
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            </f:facet>
+            <link rel="shortcut icon" href="resources/imagens/logo2.ico" />
+            <link rel="icon" type="image/png" href="resources/imagens/logo2.ico" />
+            <h:outputStylesheet name="/estilo/default.css"/>
+            <h:outputStylesheet name="/estilo/pgerro.css"/>
+            <!--<h:outputStylesheet name="/estilo/signin.css"/>-->
+            <h:outputStylesheet name="/estilo/bootstrap.min.css"/>
 
-                <!--<form action="j_spring_security_check" method="post" style="margin-top: 20px;">-->
+            <title>#{mensagens['nome.sistema']}</title>
+        </h:head>
 
-                    <!--<h:panelGrid columns="2" cellpadding="5">-->
-                        <!--<p:outputLabel for="j_username" value="Usuário:" />-->
-                        <!--<p:inputText id="j_username" required="true"/>-->
-                        <!--<p:outputLabel for="j_password" value="Senha:" />-->
-                        <!--<p:password id="j_password" required="true" />-->
-                    <!--</h:panelGrid>-->
-                    <!--<h:commandButton class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="margin-left: 120px;margin-top: 10px ;height: 30px;width: 80px" value="Entrar"/>-->
-                <!--</form>-->
-            <!--</p:panel>-->
-        <!--</p:graphicImage>-->
 
-    </ui:define>
-</ui:composition>
+        <h:body style="background: url(resources/imagens/background1.png) no-repeat">
 
+            <div align="center">
+                <div >
+                    <h:graphicImage url="resources/imagens/logo.png" width="560" style="margin-bottom: 10px; margin-top: 5px"/>
+                </div>
+                <p:panel style="background: url(resources/imagens/painel2.png) no-repeat;height: 97px;width: 560px">
+                    <form action="j_spring_security_check" method="post"   >
+                        <h:panelGrid columns="3" style="margin-top: 27px; margin-left:  40px;">
+                            <p:inputText title="Digite somente número" maxlength="9" id="j_username" size="23" required="true" placeholder="Matricula" style="margin-right: 48px"/>
+                            <p:password id="j_password" size="23" required="true" placeholder="Senha" style="margin-right: 10px"/>
+                            <input type="image" src="resources/imagens/buttonLogin.png"/>
+                                <!--<h:graphicImage url="resources/imagens/buttonLogin.png"/>-->
+                        </h:panelGrid>
+
+
+                    </form>
+                </p:panel>
+                <div id="rodape"></div>
+            </div>
+
+        </h:body>
+
+    </f:view>
+</html>

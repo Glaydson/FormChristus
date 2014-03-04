@@ -7,8 +7,10 @@
 package br.com.formchristus.controller;
 
 import br.com.formchristus.dao.ItemFormularioDao;
+import br.com.formchristus.enumerated.TipoFormulario;
 import br.com.formchristus.modelo.ItemFormulario;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,5 +28,9 @@ public class ItemFormularioController extends ControllerGenerico<ItemFormulario,
     @PostConstruct
     private void setDao(){
         setDao(dao);
+    }
+    
+    public List<ItemFormulario> listarQuestoes(TipoFormulario formulario,int ques){
+        return dao.listarQuestoes(formulario,ques);
     }
 }
