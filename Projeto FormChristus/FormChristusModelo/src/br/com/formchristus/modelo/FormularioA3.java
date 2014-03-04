@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.formchristus.modelo;
 
 import java.io.Serializable;
@@ -32,7 +31,8 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "formulario_a3", schema = "formularios")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class FormularioA3  implements Serializable{
+public class FormularioA3 implements Serializable {
+
     @Id
     @Column(name = "for_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,28 +43,28 @@ public class FormularioA3  implements Serializable{
     private AtividadeComplementar atividade;
 
     @ManyToOne
-    @JoinColumn(name = "alu_matricula", referencedColumnName = "alu_matricula",nullable = false)
+    @JoinColumn(name = "alu_matricula", referencedColumnName = "alu_matricula", nullable = false)
     private Aluno aluno;
-    
+
     @Column(name = "for_qtd_horas")
     private Integer horas;
     @NotBlank
-    @Column(name = "for_questao_1",nullable = false)
+    @Column(name = "for_questao_1", nullable = false)
     private String questao1;
     @NotBlank
-    @Column(name = "for_questao_2",nullable = false)
+    @Column(name = "for_questao_2", nullable = false)
     private String questao2;
     @NotBlank
-    @Column(name = "for_questao_3",nullable = false)
+    @Column(name = "for_questao_3", nullable = false)
     private String questao3;
     @NotBlank
-    @Column(name = "for_questao_4",nullable = false)
+    @Column(name = "for_questao_4", nullable = false)
     private String questao4;
-    
+
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     private List<ItemFormulario> itensQuestao5;
-    
+
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     private List<ItemFormulario> itensQuestao6;
@@ -170,6 +170,5 @@ public class FormularioA3  implements Serializable{
         }
         return true;
     }
-    
-    
+
 }
