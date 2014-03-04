@@ -67,6 +67,7 @@ public class FormularioA3Mb extends BeanGenerico<FormularioA3> implements Serial
     public void salvar() {
         try {
             controller.salvar(formularioA3);
+            iniciar();
             BeanMenssagem.addMenssagemInfo(beanUtilitario.getMsg("cadastro"));
         } catch (Exception ex) {
             BeanMenssagem.addMenssagemErro(beanUtilitario.getMsg("erro"));

@@ -29,19 +29,23 @@
                 <div >
                     <h:graphicImage url="resources/imagens/logo.png" width="560" style="margin-bottom: 10px; margin-top: 5px"/>
                 </div>
+                <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: red;font-size: 15px"/>
+
                 <p:panel style="background: url(resources/imagens/painel2.png) no-repeat;height: 97px;width: 560px">
                     <form action="j_spring_security_check" method="post"   >
-                        <h:panelGrid columns="3" style="margin-top: 27px; margin-left:  40px;">
-                            <p:inputText title="Digite somente número" maxlength="9" id="j_username" size="23" required="true" placeholder="Matricula" style="margin-right: 48px"/>
-                            <p:password id="j_password" size="23" required="true" placeholder="Senha" style="margin-right: 10px"/>
+                        <h:panelGrid columns="3" style="margin-top: 27px; margin-left:  30px;">
+                            <p:inputText title="Digite somente número" maxlength="9" id="j_username" size="20" required="true" placeholder="Matricula" style="margin-right: 53px"/>
+                            <p:password id="j_password" size="20" required="true" placeholder="Senha" style="margin-right: 5px"/>
                             <input type="image" src="resources/imagens/buttonLogin.png"/>
-                                <!--<h:graphicImage url="resources/imagens/buttonLogin.png"/>-->
+                            <!--<h:graphicImage url="resources/imagens/buttonLogin.png"/>-->
                         </h:panelGrid>
 
 
                     </form>
+
                 </p:panel>
-                <div id="rodape"></div>
+
+                <!--<div id="rodape"></div>-->
             </div>
 
         </h:body>
