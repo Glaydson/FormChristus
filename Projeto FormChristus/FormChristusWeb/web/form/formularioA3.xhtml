@@ -95,7 +95,8 @@
                                 <p:message for="qt3"  showDetail="true"  />
                             </h:panelGrid>
                             <h:panelGrid columns="3">
-                                <p:inputTextarea id="qt3"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
+                                <p:inputTextarea id="qt3" placeholder="Que tópicos podem ser colocados como temáticas para aprofundamento de estudos, pesquisa e/ou monografia? " 
+                                                 rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
                             </h:panelGrid>
                         </h:panelGrid>
                         <h:panelGrid width="100%">
@@ -104,7 +105,8 @@
                                 <p:message for="qt4"  showDetail="true"  />
                             </h:panelGrid>
                             <h:panelGrid columns="2">
-                                <p:inputTextarea id="qt4"  placeholder="" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
+                                <p:inputTextarea id="qt4" placeholder="Os conteúdos abordados contribuíram para o seu desenvolvimento no curso?Por que?" 
+                                                 rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
                             </h:panelGrid>
                         </h:panelGrid>
                     </h:panelGrid>
@@ -130,7 +132,7 @@
             <p:tab id="ques03" title="Questionário 03">
                 <h:panelGrid columns="2" width="100%">
                     <h:panelGrid id="qt6"  columns="1">
-                        <h:panelGrid>
+                        <h:panelGrid columns="2">
                             &rArr;   <p:outputLabel for="grid6" value="Selecione os itens contemplados pela atividade"/>
                         </h:panelGrid>
                         <p:selectManyCheckbox id="grid6" value="#{formularioA3Mb.formularioA3.itensQuestao6}" layout="pageDirection" converter="#{converterItemFormulario}" columns="3">  
@@ -166,7 +168,7 @@
                 <h:panelGrid width="100%" columns="2">
                     <h:panelGrid columns="1">
                         <p:outputLabel  value="01)"/>                   
-                        <p:inputTextarea  readonly="true"               rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
+                        <p:inputTextarea  readonly="true"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
                     </h:panelGrid>
                     <h:panelGrid columns="1">
                         <p:outputLabel value="02)"/>
@@ -201,8 +203,8 @@
                     </h:panelGrid>
                 </h:panelGrid>
                 <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
-                    <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}"   update=":frmGeral"/>
-                    <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA4'], label['lisFormA4'])}" immediate="true" />
+                    <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf')"   update=":frmGeral"/>
+                    <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'], label['lisFormA3'])}" immediate="true" />
                 </h:panelGrid>
             </p:tab>
         </p:wizard>

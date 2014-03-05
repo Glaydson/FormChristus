@@ -5,13 +5,14 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
 
-    <p:dialog widgetVar="dialogConsultaAtividadeComp" width="1000" showEffect="fade" modal="true" header="Consulta de  Atividades Complementares">
+    <p:dialog widgetVar="dialogConsultaAtividadeComp" width="1050" showEffect="fade" modal="true" header="Consulta de  Atividades Complementares">
         <h:form id="frmConsultaAtivi">
 
-            <p:panel styleClass="painelPadrao">
+            <p:panel >
                 <p:blockUI block="frmConsultaAtivi:grd" trigger="btnListar" widgetVar="bui">
                     <p:graphicImage  library="imagens" name="logo.png" />
                 </p:blockUI>
@@ -27,14 +28,16 @@
                                 <p:spacer width="15"/>
                                 <h:panelGrid columns="2">
                                     <p:commandButton action="#{atividadeComplementarMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
-                                    <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['cadAtividadeComp'], label['cadAtividadeComp'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
+                                    <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR">
+                                        <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['cadAtividadeComp'], label['cadAtividadeComp'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
+                                    </sec:ifAnyGranted>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:fieldset>
                     <p:dataTable value="#{atividadeComplementarMb.listaAtividadeComplementars}" id="tabela" paginatorAlwaysVisible="false" paginator="true" var="t" rows="10" 
                                  rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}" rowIndexVar="rowIx" emptyMessage="Nenhum valor encontrado">
-                        
+
                         <p:column headerText="Nome" sortBy="#{t.nome}">
                             <h:outputText value="#{t.nome}"/>
                         </p:column>
@@ -46,12 +49,12 @@
                         </p:column>
                         <p:column headerText="Inicio" sortBy="#{t.inicio}">
                             <h:outputText value="#{t.inicio}">
-                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                <!--<f:convertDateTime pattern="dd/MM/yyyy HH"/>-->
                             </h:outputText>
                         </p:column>
-                         <p:column headerText="Fim" sortBy="#{t.inicio}">
-                            <h:outputText value="#{t.inicio}">
-                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        <p:column headerText="Fim" sortBy="#{t.fim}">
+                            <h:outputText value="#{t.fim}">
+                                <!--<f:convertDateTime  type="time"  pattern="HH:mm"/>-->
                             </h:outputText>
                         </p:column>
 
