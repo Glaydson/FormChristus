@@ -25,19 +25,19 @@ and open the template in the editor.
     </h:head>
     <h:body  >
 
-        <p:layout fullPage="true" id="bd">
-            <p:layoutUnit id="top"   position="north" size="80" style="margin-top: 0px;margin-bottom: 0px;" collapseSize="20" >
+        <p:layout  fullPage="true" id="bd">
+            <p:layoutUnit id="top"    position="north" size="77"   >
                 <comp:cabecalhoJsf/>
                 <h:form>
                     <p:growl showDetail="true" showSummary="true" autoUpdate="true" globalOnly="true"/>
                 </h:form>
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="205" collapsible="true" header="Menu" style="text-align: center;">
+            <p:layoutUnit styleClass="menu" position="west" size="205" collapsible="true" header="Menu" style="text-align: center;">
                 <h:form>
                     <p:commandButton style="width: 100%" value="Inicio" immediate="true" action="#{beanUtilitario.redirecionarPagina(navegacao['sistema.home'],'Formulários')}" update=":frmGeral" icon="ui-icon-home"/>
 
-                    <p:panelMenu>
+                    <p:panelMenu  >
                         <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR">
 
                             <p:submenu label="Cadastros Basicos" >
@@ -88,20 +88,20 @@ and open the template in the editor.
                     <p:commandButton style="width: 100%" value="Sair" action="#{beanUtilitario.logout()}"  global="false" icon="ui-icon-closethick"/>
                 </h:form>
             </p:layoutUnit>
-
-            <p:layoutUnit position="center" style="text-align: center;" header="#{mensagens['nome.sistema']}" >
+            <p:layoutUnit position="center" style="text-align: center;"   header="#{mensagens['nome.sistema']}" >
 
                 <h:form>
                     <p:growl autoUpdate="true" showDetail="true" showSummary="true"/>
                 </h:form>
 
-                <p:panel style="background: url(resources/imagens/01.png)" footer="Matricula:#{beanUtilitario.usuarioLogado.login}" header="#{beanUtilitario.pnl}" id="formcenter" >
-                    <h:form id="frmGeral">
-                        <p:messages id="msg" autoUpdate="true" closable="true" showDetail="true" showSummary="true"/>
-                        <center>                            
-                            <ui:insert name="corpo"></ui:insert>
+                <p:panel style="background:url(../resources/imagens/default.png) repeat ;"  footer="Matricula:#{beanUtilitario.usuarioLogado.login}" header="#{beanUtilitario.pnl}" id="formcenter" >
+
+                    <h:form id="frmGeral"  >
+                        <center   >      
+                                <ui:insert  name="corpo"></ui:insert>
                         </center>
                     </h:form>
+
                 </p:panel>
 
             </p:layoutUnit>

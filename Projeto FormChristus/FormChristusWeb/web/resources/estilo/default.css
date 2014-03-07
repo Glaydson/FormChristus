@@ -5,7 +5,7 @@
     padding: 0px;
 }
 body {
-    background-color:  white;
+    /*background-color:  white;*/
     /**font-size: 10px; **/
     /** font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif; **/
     color: #000000;
@@ -14,12 +14,12 @@ body {
 .cabecalho{
     margin: 0px;
     padding: 0px;
-    border: black solid 1px;
-    background: #FFFFFF url(resources/imagens/img01.png) repeat-x;
+    border: #357ebd solid 1px;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
-    background-color: black;
+    background-color: #357ebd;
+    background:#357ebd url(../../resources/imagens/header.png) repeat-x ;
 }
 a{
     text-decoration: none;
@@ -39,11 +39,13 @@ a:link:hover, a:visited:hover  {
 .painelPadrao{
     min-height: 400px;
     width: 900px;
-    /*background: #E0EEEE;*/
+    background:#357ebd url(../../resources/imagens/default.png) repeat-x ;
+
 }
 
 .menu{
-    background: #E0EEEE;
+    background:  url(../../resources/imagens/default.png) repeat ;
+
     border-color: #4682B4;
 
 }

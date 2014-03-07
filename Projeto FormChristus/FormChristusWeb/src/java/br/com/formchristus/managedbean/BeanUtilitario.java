@@ -41,7 +41,6 @@ public class BeanUtilitario implements Serializable {
     private String pagina;
     private String pnl;
    // private String matricula;
-    
 
     @PostConstruct
     private void iniciar() {
@@ -50,6 +49,7 @@ public class BeanUtilitario implements Serializable {
         map = new HashMap<>();
         carregarUsuarioLogado();
     }
+
     public String getMsg(String messageId) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String msg = "";
@@ -66,9 +66,9 @@ public class BeanUtilitario implements Serializable {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             ExternalContext external = context.getExternalContext();
-           
+
             usuarioLogado = (Usuario) usuarioController.carregar(external.getRemoteUser());
-            
+
         } catch (PersistenceException ex) {
             Logger.getLogger(BeanUtilitario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (EJBException ex) {
@@ -78,21 +78,23 @@ public class BeanUtilitario implements Serializable {
         }
     }
 
-    public void redirecionarPagina(String pag,String pn) {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/FormChristusWeb".concat(pag));
-              pnl = pn;
-        } catch (IOException e) {
-            Logger.getLogger(BeanUtilitario.class.getName()).log(Level.SEVERE, null, e);
-        }
+    public String redirecionarPagina(String pag, String pn) {
+            pnl = pn;
+            return pag.concat("?faces-redirect=true");
+//        try {
+//            FacesContext.getCurrentInstance().getExternalContext().redirect("/FormChristusWeb".concat(pag));
+//            pnl = pn;
+//        } catch (IOException e) {
+//            Logger.getLogger(BeanUtilitario.class.getName()).log(Level.SEVERE, null, e);
+//        }
     }
-    public String redirecionarPagina2(String pag,String pn) {
+
+    public String redirecionarPagina2(String pag, String pn) {
         pnl = pn;
         return pag;
     }
 
-    
-    protected  Object getRegistroDoMap(String chave, Object t) {
+    protected Object getRegistroDoMap(String chave, Object t) {
         FacesContext context = FacesContext.getCurrentInstance();
         ELResolver resolver = context.getApplication().getELResolver();
         BeanUtilitario nav = (BeanUtilitario) resolver.getValue(context.getELContext(), null, "beanUtilitario");
@@ -100,7 +102,7 @@ public class BeanUtilitario implements Serializable {
             if (nav.getMap().containsKey(chave)) {
                 return nav.getMap().remove(chave);
             }
-          
+
         }
         return t;
     }
@@ -145,13 +147,14 @@ public class BeanUtilitario implements Serializable {
         }
     }
 
-    public void redirecionar(String pag, String key, Object valor,String tit) {
+    public String redirecionar(String pag, String key, Object valor, String tit) {
         try {
             map.put(key, valor);
+            
         } catch (Exception e) {
             Logger.getLogger(BeanUtilitario.class.getName()).log(Level.SEVERE, null, e);
         }
-        redirecionarPagina(pag,tit);
+        return redirecionarPagina(pag, tit);
     }
 
     public String getPnl() {
@@ -177,8 +180,6 @@ public class BeanUtilitario implements Serializable {
     public void setMap(Map<String, Object> map) {
         this.map = map;
     }
-
-   
 
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
