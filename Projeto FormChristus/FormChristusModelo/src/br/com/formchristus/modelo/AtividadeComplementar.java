@@ -101,7 +101,7 @@ public class AtividadeComplementar implements Serializable {
     }
 
     public void setLocal(String local) {
-        this.local = local;
+        this.local = local.toUpperCase();
     }
 
     public Campus getCampus() {

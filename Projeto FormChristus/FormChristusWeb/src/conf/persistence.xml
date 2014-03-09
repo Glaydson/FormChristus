@@ -14,6 +14,7 @@
     <class>br.com.formchristus.modelo.FormularioA4</class>
     <class>br.com.formchristus.modelo.FormularioA3</class>
     <class>br.com.formchristus.modelo.ItemFormulario</class>
+    <class>br.com.formchristus.modelo.FormularioA1</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.show_sql" value="true"/>

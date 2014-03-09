@@ -7,12 +7,12 @@
                 xmlns:p="http://primefaces.org/ui">
 
 
-    <p:dialog widgetVar="dialogConsultaCurso" showEffect="fade" modal="true" header="Consulta de Cursos">
-        <h:form id="frmConsultaCurso">
+    <p:dialog widgetVar="dialogConsultaTipoAtividadeComp" showEffect="fade" modal="true" header="Consulta de Tipos Atividades Complementares">
+        <h:form id="frmConsultaTipoAtivi">
 
             <p:panel styleClass="painelPadrao">
-                <p:blockUI block="frmConsultaCurso:grd" trigger="btnListar" widgetVar="bui">
-                    <p:graphicImage  library="imagens" name="logo.png" />
+                <p:blockUI block="frmConsultaTipoAtivi:grd" trigger="btnListar" widgetVar="bui">
+                    <p:graphicImage  library="imagens" name="carregar.gif" />
                 </p:blockUI>
                 <p:focus/>
                 <h:panelGrid width="100%" id="grd">
@@ -20,18 +20,18 @@
                         <h:panelGrid columns="4">
                             <h:panelGrid>
                                 <p:outputLabel value="Buscar por"/>
-                                <p:inputText value="#{cursoMb.valorBusca}" />
+                                <p:inputText value="#{tipoAtividadeComplementarMb.valorBusca}" />
                             </h:panelGrid>
                             <h:panelGrid>
                                 <p:spacer width="15"/>
                                 <h:panelGrid columns="2">
-                                    <p:commandButton action="#{cursoMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
-                                    <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['cadCurso'], label['cadCurso'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
+                                    <p:commandButton action="#{tipoAtividadeComplementarMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
+                                    <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['cadTipoAtividadeComplementar'], label['cadTipoAtividade'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:fieldset>
-                    <p:dataTable value="#{cursoMb.listaCursos}" id="tabela" paginatorAlwaysVisible="false" paginator="true" var="t" rows="10" 
+                    <p:dataTable value="#{tipoAtividadeComplementarMb.listaAtividades}" id="tabela" paginatorAlwaysVisible="false" paginator="true" var="t" rows="10" 
                                  rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}" rowIndexVar="rowIx" emptyMessage="Nenhum valor encontrado">
                         <p:column headerText="Código" width="60" sortBy="#{t.id}">
                             <h:outputText value="#{t.id}"/>
@@ -39,13 +39,13 @@
                         <p:column headerText="Nome" sortBy="#{t.nome}">
                             <h:outputText value="#{t.nome}"/>
                         </p:column>
-                        <p:column headerText="Campus" sortBy="#{t.campus.nome}">
-                            <h:outputText value="#{t.campus.nome}"/>
+                        <p:column headerText="Grupo" sortBy="#{t.grupo}">
+                            <h:outputText value="#{t.grupo}"/>
                         </p:column>
 
                         <p:column headerText="Ação" width="10%">
                             <ui:insert name="comando">
-                                <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;"  immediate="true" title="Editar" action="#{beanUtilitario.redirecionar(navegacao['cadCurso'], 'curso', t,label['cadCurso'])}"/>
+                                <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;"  immediate="true" title="Editar" action="#{beanUtilitario.redirecionar(navegacao['cadTipoAtividadeComplementar'], 'tipoAtvComplementar', t,label['cadTipoAtividade'])}"/>
                             </ui:insert>
                         </p:column>
                     </p:dataTable>

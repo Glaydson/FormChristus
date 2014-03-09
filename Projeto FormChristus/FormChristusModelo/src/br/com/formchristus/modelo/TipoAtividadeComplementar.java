@@ -44,7 +44,7 @@ public class TipoAtividadeComplementar implements Serializable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public GrupoAtividade getGrupo() {

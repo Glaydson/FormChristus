@@ -64,22 +64,28 @@ and open the template in the editor.
                             </p:submenu>
                         </sec:ifAnyGranted>
                         <p:submenu  label="Formulários">
-                            <p:submenu  label="Cadastros">
+                            <p:submenu  label="Preencher">
+                                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_PROFESSOR">
+                                    <p:menuitem value="A1"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['formA1'],label['formA1'])}"/>
+                                </sec:ifAnyGranted>
                                 <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR">
                                     <p:menuitem value="Itens dos Formularios"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['cadItemFormulario'],label['cadItemFormulario'])}"/>
+
                                 </sec:ifAnyGranted>
                                 <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_ALUNO">
-
-                                    <p:menuitem value="A4"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['formA4'],label['formA4'])}"/>
                                     <p:menuitem value="A3"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['formA3'],label['formA3'])}"/>
+                                    <p:menuitem value="A4"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['formA4'],label['formA4'])}"/>
 
                                 </sec:ifAnyGranted>
                             </p:submenu>
                             <p:submenu  label="Listas">
-                                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_ALUNO">
-                                    <p:menuitem value="A4"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA4'],label['lisFormA4'])}"/>
-                                    <p:menuitem value="A3"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'],label['lisFormA3'])}"/>
+                                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_PROFESSOR">
+                                    <p:menuitem value="A1"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA1'],label['lisFormA1'])}"/>
 
+                                </sec:ifAnyGranted>
+                                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR,ROLE_ALUNO">
+                                    <p:menuitem value="A3"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'],label['lisFormA3'])}"/>
+                                    <p:menuitem value="A4"   update=":frmGeral"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA4'],label['lisFormA4'])}"/>
                                 </sec:ifAnyGranted>
                             </p:submenu>
 
@@ -98,7 +104,7 @@ and open the template in the editor.
 
                     <h:form id="frmGeral"  >
                         <center   >      
-                                <ui:insert  name="corpo"></ui:insert>
+                            <ui:insert  name="corpo"></ui:insert>
                         </center>
                     </h:form>
 

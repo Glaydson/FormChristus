@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "coordenador", schema = "cadastro_basico")
@@ -29,11 +28,11 @@ public class Coordenador implements Serializable {
     @JoinColumn(name = "cur_id", referencedColumnName = "cur_id", nullable = false)
     private Curso curso;
 
-    public String getmatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setmatricula(String matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

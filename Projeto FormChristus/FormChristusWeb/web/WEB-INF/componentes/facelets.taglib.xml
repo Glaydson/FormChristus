@@ -15,6 +15,21 @@
         <tag-name>rodape</tag-name>
         <source>rodape.xhtml</source>
     </tag>
-    
+    <tag>
+        <tag-name>consultaAlunos</tag-name>
+        <source>consultaAlunos.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>consultaAtividadeComplementar</tag-name>
+        <source>consultaAtividadeComplementar.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>consultaCursos</tag-name>
+        <source>consultaCursos.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>consultaTipoAtividadeComplementar</tag-name>
+        <source>consultaTipoAtividadeComplementar.xhtml</source>
+    </tag>
 
 </facelet-taglib>

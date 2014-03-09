@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                template="/modelo/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:comp="http://componentes"
+                >
+    <ui:define name="corpo">
+        <h:outputScript name="script/maskMoney.js" />
+        <h:outputScript name="script/edtMoeda.js" />
+        <h:outputScript name="script/numeros.js" />
+        <h:outputScript name="script/navegacao.js"/>
+        <p:blockUI block=":frmGeral" trigger="btnSalvar" widgetVar="bui">
+            <p:graphicImage  library="imagens" name="carregar.gif" />
+        </p:blockUI>
+
+        <p:wizard flowListener="#{formularioA3Mb.onFlowProcess}" backLabel="Voltar" showStepStatus="false" nextLabel="Proximo">  
+            <p:tab id="pes" >
+                <p:panel>
+                    <h:panelGrid  columns="2" width="100%">
+                        <h:panelGrid columns="2" width="100%">
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="curNome" value="Curso"/>
+                                    <p:message for="curNome"  showDetail="true"  />
+                                </h:panelGrid>
+                                <h:panelGrid id="c" columns="2">
+                                    <p:commandButton  icon="ui-icon-search" title="Lista de cursos"   immediate="true" onclick="dialogConsultaCurso.show()"  update=":frmGeral">
+                                        <p:inputText id="curNome"  size="60" readonly="true" requiredMessage="#{mensagens.require}" required="true" value="#{formularioA1Mb.a1.curso.nome}" />
+                                    </p:commandButton>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="tit" value="Título da Atividae"/>
+                                <p:message for="tit"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputText id="tit" size="60"    requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.tituloAtividade}" />
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="jus" value="Justificativa"/>
+                                <p:message for="jus"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea rows="10" cols="60" id="jus"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.justificativa}" />
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="dis" value="Disciplinas Envolvidas"/>
+                                    <p:message for="dis"  showDetail="true"  />
+                                </h:panelGrid>
+                                <p:inputTextarea rows="10" cols="60" id="dis"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.disciplinasEnvolvidas}" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+            <p:tab >
+                <p:panel>
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="obj" value="Objetivo Geral"/>
+                                <p:message for="obj"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea rows="10" cols="60" id="obj"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.objetivoGeral}" />
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="esp" value="Objetivo Especifico"/>
+                                <p:message for="esp"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea rows="10" cols="60" id="esp"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.objetivoEspecifico}" />
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="met" value="Metodologia"/>
+                                <p:message for="met"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea rows="10" cols="60" id="met"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.metodologia}" />
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="pub" value="Publico Alvo"/>
+                                <p:message for="pub"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea rows="10" cols="60" id="pub"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.publicoAlvo}" />
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+            <p:tab >
+                <p:panel>
+                    <h:panelGrid columns="2" >
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="loc" value="Local"/>
+                                <p:message for="loc"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputText id="loc" size="60"    requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.local}" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="per" value="Periodo"/>
+                                    <p:message for="per"  showDetail="true"  />
+                                </h:panelGrid>
+                                <p:inputText id="per" size="30" placeholder="01/01/2014 a 10/01/2014"    requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.periodo}" />
+                            </h:panelGrid>
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="hor" value="Horário"/>
+                                    <p:message for="hor"  showDetail="true"  />
+                                </h:panelGrid>
+                                <p:inputText id="hor" size="20" placeholder="10:00 as 12:00"    requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.horario}" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="car" value="Carga Horária"/>
+                                    <p:message for="car"  showDetail="true"  />
+                                </h:panelGrid>
+                                <p:inputText id="car" size="3"    requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.cargaHoraria}" >
+                                    <f:convertNumber integerOnly="true"/>
+
+                                </p:inputText>
+                            </h:panelGrid>
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="inv" value="Investimeto do Aluno"/>
+                                    <p:message for="inv"  showDetail="true"  />
+                                </h:panelGrid>
+                                <p:inputText id="inv" size="10" placeholder="R$ 10,00"  styleClass="edtMoeda" onfocus="mascaraInputs();" converter="#{converterBigDecimal}" converterMessage="Informe o valor!"  requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.investimento}">
+
+                                </p:inputText>
+                            </h:panelGrid>
+                            <h:panelGrid width="100%">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="orc" value="Orçamento"/>
+                                    <p:message for="orc"  showDetail="true"  />
+                                </h:panelGrid>
+                                <p:inputText id="orc" size="10" placeholder="R$ 10,00"  styleClass="edtMoeda" onfocus="mascaraInputs();" converter="#{converterBigDecimal}" converterMessage="Informe o valor!"  requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.orcamento}">
+
+                                </p:inputText>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="sem" value="Dias da Semana"/>
+                                <p:message for="sem"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputText id="sem" size="60" placeholder="Segunda,Terça ... "    requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.diaSemana}"/>
+
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="vag" value="Número de Vagas"/>
+                                <p:message for="vag"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputText id="vag" size="5"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.numeroVagas}" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+            <p:tab >
+                <p:panel>
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="doc" value="Corpo Docente"/>
+                                <p:message for="doc"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea id="doc" rows="10" cols="60"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.corpoDocente}" />
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="rec" value="Recursos Necessários"/>
+                                <p:message for="rec"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea id="rec" rows="10" cols="60"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.recusros}" />
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="par" value="Parecer Coordenação"/>
+                                <p:message for="par"  showDetail="true"  />
+                            </h:panelGrid>
+                            <p:inputTextarea id="par" rows="10" cols="60"   requiredMessage="#{mensagens['require']}" required="true" value="#{formularioA1Mb.a1.parecerCoordenacao}" />
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+                    <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
+                        <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA1Mb.salvar()}"    update=":frmGeral"/>
+                        <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'], label['lisFormA3'])}" immediate="true" />
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+        </p:wizard>
+
+
+
+    </ui:define>
+    <ui:define name="dialogs">
+        <comp:consultaCursos/>
+    </ui:define>
+
+    <ui:define name="comando">
+        <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" update=":frmGeral:c" title="Selecionar"   oncomplete="dialogConsultaCurso.hide();">
+            <f:setPropertyActionListener value="#{t}" target="#{formularioA1Mb.a1.curso}"/>
+        </p:commandButton>
+    </ui:define>
+</ui:composition>

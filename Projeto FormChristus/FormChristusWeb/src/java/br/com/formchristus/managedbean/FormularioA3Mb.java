@@ -16,7 +16,6 @@ import br.com.formchristus.relatorio.util.AssistentedeRelatorio;
 import br.com.formchristus.relatorio.util.RelatorioSession;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class FormularioA3Mb extends BeanGenerico<FormularioA3> implements Serial
     @Override
     public void salvar() {
         try {
-            formularioA3.setHoras(controller.addFormA3(formularioA3));
+            formularioA3.setHoras(controller.calcularHoras(formularioA3));
             controller.salvar(formularioA3);
             impressao();
             iniciar();

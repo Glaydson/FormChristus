@@ -93,7 +93,7 @@ public class ItemFormulario implements Serializable {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = descricao.toUpperCase();
     }
 
 }

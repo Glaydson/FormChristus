@@ -8,7 +8,9 @@ and open the template in the editor.
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:comp="http://componentes"
+                >
     <ui:define name="corpo">   
 
 
@@ -83,12 +85,12 @@ and open the template in the editor.
 
     </ui:define>
     <ui:define name="dialogs">
-        <ui:include src="#{navegacao['diaCurso']}"/>
-    </ui:define>
+        <comp:consultaCursos/>
+</ui:define>
 
-    <ui:define name="comando">
-        <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" update=":frmGeral:grdCur" title="Selecionar"   oncomplete="dialogConsultaCurso.hide();">
-            <f:setPropertyActionListener value="#{t}" target="#{alunoMb.aluno.curso}"/>
-        </p:commandButton>
-    </ui:define>
+<ui:define name="comando">
+    <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" update=":frmGeral:grdCur" title="Selecionar"   oncomplete="dialogConsultaCurso.hide();">
+        <f:setPropertyActionListener value="#{t}" target="#{alunoMb.aluno.curso}"/>
+    </p:commandButton>
+</ui:define>
 </ui:composition>

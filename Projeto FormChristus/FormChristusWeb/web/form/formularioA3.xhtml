@@ -5,19 +5,20 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"                                xmlns:comp="http://componentes"
+                >
     <ui:define name="corpo">
 
         <h:outputScript name="script/navegacao.js"/>
         <p:blockUI block=":frmGeral" trigger="btnSalvar" widgetVar="bui">
-            <p:graphicImage  library="imagens" name="logo.png" />
+            <p:graphicImage  library="imagens" name="carregar.gif" />
         </p:blockUI>
 
-        <p:wizard flowListener="#{formularioA3Mb.onFlowProcess}" backLabel="Voltar" nextLabel="Proximo">  
+        <p:wizard flowListener="#{formularioA3Mb.onFlowProcess}" showStepStatus="false" backLabel="Voltar" nextLabel="Proximo">  
             <p:tab id="pes" title="Dados Pessoais">
                 <p:panel>
 
-                    <h:panelGrid  columns="1" width="100%">
+                    <h:panelGrid columns="2" width="100%">
                         <h:panelGrid width="100%">
                             <h:panelGrid columns="2">
                                 <p:outputLabel value="Matricula"/>
@@ -32,12 +33,7 @@
                             </h:panelGrid>
                             <p:inputText id="alNomr" size="52"   disabled="true" required="true" value="#{formularioA3Mb.formularioA3.aluno.pessoa.nome}" />
                         </h:panelGrid>
-                    </h:panelGrid>
-                </p:panel>
-            </p:tab>
-            <p:tab id="cur" title="Curso">
-                <p:panel>
-                    <h:panelGrid columns="2" width="100%">
+
                         <h:panelGrid width="100%">
                             <h:panelGrid columns="2">
                                 <p:outputLabel for="curNome" value="Curso"/>
@@ -47,24 +43,26 @@
                                 <p:inputText id="curNome"  size="50" required="true" disabled="true" value="#{formularioA3Mb.formularioA3.aluno.curso.nome}" />
                             </h:panelGrid>
                         </h:panelGrid>
-                    </h:panelGrid>
-                    <h:panelGrid  width="100%" columns="2">
-                        <h:panelGrid columns="2">
-                            <h:panelGrid width="100%">
-                                <h:panelGrid columns="2">
-                                    <p:outputLabel for="ativ" value="Atividade Complementar"/>
-                                    <p:message for="ativ"  showDetail="true"  />
-                                </h:panelGrid>
-                                <h:panelGrid id="ativ" columns="2">
-                                    <p:commandButton  icon="ui-icon-search" title="Lista de curso"   immediate="true" onclick="dialogConsultaAtividadeComp.show()"  update=":frmGeral">
-                                        <p:inputText id="atvNome"  size="50" disabled="true" requiredMessage="#{mensagens.require}" required="true" value="#{formularioA3Mb.formularioA3.atividade.nome}" />
-                                    </p:commandButton>
+                        <h:panelGrid  width="100%" columns="2">
+                            <h:panelGrid columns="2">
+                                <h:panelGrid width="100%">
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel for="ativ" value="Atividade Complementar"/>
+                                        <p:message for="ativ"  showDetail="true"  />
+                                    </h:panelGrid>
+                                    <h:panelGrid id="ativ" columns="2">
+                                        <p:commandButton  icon="ui-icon-search" title="Lista de curso"   immediate="true" onclick="dialogConsultaAtividadeComp.show()"  update=":frmGeral">
+                                            <p:inputText id="atvNome"  size="50" disabled="true" requiredMessage="#{mensagens.require}" required="true" value="#{formularioA3Mb.formularioA3.atividade.nome}" />
+                                        </p:commandButton>
+                                    </h:panelGrid>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </h:panelGrid>
                     </h:panelGrid>
+
                 </p:panel>
             </p:tab>
+            
             <p:tab id="ques01" title="Questionario 01">
                 <p:panel>
 
@@ -130,82 +128,88 @@
                 </p:panel>
             </p:tab>
             <p:tab id="ques03" title="Questionário 03">
-                <h:panelGrid columns="2" width="100%">
-                    <h:panelGrid id="qt6"  columns="1">
-                        <h:panelGrid columns="2">
-                            &rArr;   <p:outputLabel for="grid6" value="Selecione os itens contemplados pela atividade"/>
+                <p:panel>
+
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGrid id="qt6"  columns="1">
+                            <h:panelGrid columns="2">
+                                &rArr;   <p:outputLabel for="grid6" value="Selecione os itens contemplados pela atividade"/>
+                            </h:panelGrid>
+                            <p:selectManyCheckbox id="grid6" value="#{formularioA3Mb.formularioA3.itensQuestao6}" layout="pageDirection" converter="#{converterItemFormulario}" columns="3">  
+                                <f:selectItems value="#{formularioA3Mb.listaQues6()}" var="q6" itemLabel="#{q6.descricao}" />  
+                            </p:selectManyCheckbox> 
                         </h:panelGrid>
-                        <p:selectManyCheckbox id="grid6" value="#{formularioA3Mb.formularioA3.itensQuestao6}" layout="pageDirection" converter="#{converterItemFormulario}" columns="3">  
-                            <f:selectItems value="#{formularioA3Mb.listaQues6()}" var="q6" itemLabel="#{q6.descricao}" />  
-                        </p:selectManyCheckbox> 
                     </h:panelGrid>
-                </h:panelGrid>
+                </p:panel>
             </p:tab>
             <p:tab title="Finalizar">
-                <h:panelGrid columns="2" width="100%">
-                    <h:panelGrid   columns="2">
-                        <p:outputLabel value="Aluno: "/>
-                        <p:outputLabel  value="#{formularioA3Mb.formularioA3.aluno.pessoa.nome}"/> 
+                <p:panel>
+
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGrid   columns="2">
+                            <p:outputLabel value="Aluno: "/>
+                            <p:outputLabel  value="#{formularioA3Mb.formularioA3.aluno.pessoa.nome}"/> 
+                        </h:panelGrid>
+                        <h:panelGrid   columns="2">
+                            <p:outputLabel  value="Matricula: "/>
+                            <p:outputLabel  value="#{formularioA3Mb.formularioA3.aluno.matricula}"/> 
+                        </h:panelGrid>
+                        <h:panelGrid   columns="2">
+                            <p:outputLabel value="Curso: "/>
+                            <p:outputLabel value="#{formularioA3Mb.formularioA3.aluno.curso.nome}"/> 
+                        </h:panelGrid>
+                        <h:panelGrid   columns="2">
+                            <p:outputLabel value="Atividade: "/>
+                            <p:outputLabel value="#{formularioA3Mb.formularioA3.atividade.nome}"/> 
+                        </h:panelGrid>
+                        <h:panelGrid   columns="2">
+                            <p:outputLabel value="Local: "/>
+                            <p:outputLabel value="#{formularioA3Mb.formularioA3.atividade.local}"/> 
+                        </h:panelGrid>
+
                     </h:panelGrid>
-                    <h:panelGrid   columns="2">
-                        <p:outputLabel  value="Matricula: "/>
-                        <p:outputLabel  value="#{formularioA3Mb.formularioA3.aluno.matricula}"/> 
-                    </h:panelGrid>
-                    <h:panelGrid   columns="2">
-                        <p:outputLabel value="Curso: "/>
-                        <p:outputLabel value="#{formularioA3Mb.formularioA3.aluno.curso.nome}"/> 
-                    </h:panelGrid>
-                    <h:panelGrid   columns="2">
-                        <p:outputLabel value="Atividade: "/>
-                        <p:outputLabel value="#{formularioA3Mb.formularioA3.atividade.nome}"/> 
-                    </h:panelGrid>
-                    <h:panelGrid   columns="2">
-                        <p:outputLabel value="Local: "/>
-                        <p:outputLabel value="#{formularioA3Mb.formularioA3.atividade.local}"/> 
+                    <h:panelGrid width="100%" columns="2">
+                        <h:panelGrid columns="1">
+                            <p:outputLabel  value="01)"/>                   
+                            <p:inputTextarea  readonly="true"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:outputLabel value="02)"/>
+                            <p:inputTextarea  readonly="true" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao2}" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:outputLabel  value="03)"/>
+                            <p:inputTextarea  readonly="true"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:outputLabel  value="04)"/>
+                            <p:inputTextarea readonly="true" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
+                        </h:panelGrid>
                     </h:panelGrid>
 
-                </h:panelGrid>
-                <h:panelGrid width="100%" columns="2">
                     <h:panelGrid columns="1">
-                        <p:outputLabel  value="01)"/>                   
-                        <p:inputTextarea  readonly="true"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao1}" />
+                        <h:panelGrid>
+                            <p:outputLabel  value="05)"/>
+                            <p:dataTable value="#{formularioA3Mb.formularioA3.itensQuestao5}" var="q5">
+                                <p:column>
+                                    &rArr; <p:outputLabel value="#{q5.descricao}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:outputLabel  value="06)"/>
+                            <p:dataTable value="#{formularioA3Mb.formularioA3.itensQuestao6}" var="q6">
+                                <p:column>
+                                    &rArr;   <p:outputLabel value="#{q6.descricao}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGrid>
                     </h:panelGrid>
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="02)"/>
-                        <p:inputTextarea  readonly="true" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao2}" />
+                    <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
+                        <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf')"   update=":frmGeral"/>
+                        <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'], label['lisFormA3'])}" immediate="true" />
                     </h:panelGrid>
-                    <h:panelGrid columns="1">
-                        <p:outputLabel  value="03)"/>
-                        <p:inputTextarea  readonly="true"  rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao3}" />
-                    </h:panelGrid>
-                    <h:panelGrid columns="1">
-                        <p:outputLabel  value="04)"/>
-                        <p:inputTextarea readonly="true" rows="3" cols="70" required="true"  value="#{formularioA3Mb.formularioA3.questao4}" />
-                    </h:panelGrid>
-                </h:panelGrid>
-
-                <h:panelGrid columns="1">
-                    <h:panelGrid>
-                        <p:outputLabel  value="05)"/>
-                        <p:dataTable value="#{formularioA3Mb.formularioA3.itensQuestao5}" var="q5">
-                            <p:column>
-                                &rArr; <p:outputLabel value="#{q5.descricao}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <p:outputLabel  value="06)"/>
-                        <p:dataTable value="#{formularioA3Mb.formularioA3.itensQuestao6}" var="q6">
-                            <p:column>
-                                &rArr;   <p:outputLabel value="#{q6.descricao}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:panelGrid>
-                </h:panelGrid>
-                <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
-                    <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf')"   update=":frmGeral"/>
-                    <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'], label['lisFormA3'])}" immediate="true" />
-                </h:panelGrid>
+                </p:panel>
             </p:tab>
         </p:wizard>
 
@@ -213,7 +217,7 @@
 
     </ui:define>
     <ui:define name="dialogs">
-        <ui:include src="#{navegacao['diaAtividade']}"/>
+        <comp:consultaAtividadeComplementar/>
     </ui:define>
 
     <ui:define name="comando">

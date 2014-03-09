@@ -47,7 +47,7 @@ public class FormularioA3 implements Serializable {
     private Aluno aluno;
 
     @Column(name = "for_qtd_horas")
-    private Integer horas;
+    private long horas;
     @NotBlank
     @Column(name = "for_questao_1", nullable = false)
     private String questao1;
@@ -93,20 +93,22 @@ public class FormularioA3 implements Serializable {
         this.aluno = aluno;
     }
 
-    public Integer getHoras() {
+    public long getHoras() {
         return horas;
     }
 
-    public void setHoras(Integer horas) {
+    public void setHoras(long horas) {
         this.horas = horas;
     }
+
+   
 
     public String getQuestao1() {
         return questao1;
     }
 
     public void setQuestao1(String questao1) {
-        this.questao1 = questao1;
+        this.questao1 = questao1.toUpperCase();
     }
 
     public String getQuestao2() {
@@ -114,7 +116,7 @@ public class FormularioA3 implements Serializable {
     }
 
     public void setQuestao2(String questao2) {
-        this.questao2 = questao2;
+        this.questao2 = questao2.toUpperCase();
     }
 
     public String getQuestao3() {
@@ -122,7 +124,7 @@ public class FormularioA3 implements Serializable {
     }
 
     public void setQuestao3(String questao3) {
-        this.questao3 = questao3;
+        this.questao3 = questao3.toUpperCase();
     }
 
     public String getQuestao4() {
@@ -130,7 +132,7 @@ public class FormularioA3 implements Serializable {
     }
 
     public void setQuestao4(String questao4) {
-        this.questao4 = questao4;
+        this.questao4 = questao4.toUpperCase();
     }
 
     public List<ItemFormulario> getItensQuestao5() {

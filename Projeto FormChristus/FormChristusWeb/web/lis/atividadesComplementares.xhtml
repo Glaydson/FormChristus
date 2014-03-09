@@ -15,7 +15,7 @@ and open the template in the editor.
 
         <p:panel style="width: 1100px" styleClass="painelPadrao">
             <p:blockUI block="grd" trigger="btnListar" widgetVar="bui">
-                <p:graphicImage  library="imagens" name="logo.png" />
+                <p:graphicImage  library="imagens" name="carregar.gif" />
             </p:blockUI>
             <p:focus/>
             <h:panelGrid width="100%" id="grd">
@@ -48,12 +48,12 @@ and open the template in the editor.
                     </p:column>
                     <p:column headerText="Inicio" sortBy="#{t.inicio}">
                         <h:outputText value="#{t.inicio}">
-                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                           
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Fim" sortBy="#{t.inicio}">
-                        <h:outputText value="#{t.inicio}">
-                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                    <p:column headerText="Fim" sortBy="#{t.fim}">
+                        <h:outputText value="#{t.fim}">
+                           
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Ação" width="10%">

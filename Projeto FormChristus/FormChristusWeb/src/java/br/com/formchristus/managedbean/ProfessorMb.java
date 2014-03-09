@@ -91,6 +91,11 @@ public class ProfessorMb extends BeanGenerico<Professor> implements Serializable
 
     public void addCurco(Curso c){
         professor.getCursos().add(c);
+        BeanMenssagem.addMenssagemInfo(beanUtilitario.getMsg("addCurso"));
+    }
+    
+    public void removerCurso(Curso c){
+        professor.getCursos().remove(c);
     }
     
     public void listarNome() {

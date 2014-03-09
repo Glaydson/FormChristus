@@ -9,9 +9,10 @@ and open the template in the editor.
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:sec="http://www.springframework.org/security/facelets/tags">
+                xmlns:sec="http://www.springframework.org/security/facelets/tags"
+                xmlns:comp="http://componentes"
+                >
     <ui:define name="corpo">   
-
         <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_COORDENADOR">
 
             <h:panelGrid width="100%"   id="grd">
@@ -71,14 +72,15 @@ and open the template in the editor.
                                     <p:column headerText="Campus" >
                                         <h:outputText value="#{t.campus.nome}"/>
                                     </p:column>
-
                                     <p:column headerText="Turno" >
                                         <h:outputText value="#{t.turno}"/>
                                     </p:column>
                                     <p:column headerText="Tipo" >
                                         <h:outputText value="#{t.tipoCurso}"/>
                                     </p:column>
-
+                                    <p:column headerText="Ação">
+                                        <p:commandButton icon="ui-icon-trash" style="width: 20px;height: 20px;" immediate="true" action="#{professorMb.removerCurso(t)}" update=":frmGeral:grdCur" title="Selecionar"   />
+                                    </p:column>
                                 </p:dataTable>
                             </h:panelGrid>
                         </h:panelGrid>
@@ -96,7 +98,7 @@ and open the template in the editor.
         </sec:ifAnyGranted>
     </ui:define>
     <ui:define name="dialogs">
-        <ui:include src="#{navegacao['diaCurso']}"/>
+        <comp:consultaCursos/>
     </ui:define>
 
     <ui:define name="comando">

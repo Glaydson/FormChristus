@@ -34,30 +34,35 @@ public class FormularioA3Controller extends ControllerGenerico<FormularioA3, Lon
         return dao.listarPorAluno(a);
     }
 
-    public int addFormA3(FormularioA3 a3) {
-        int hIni, hFim, mIni, mFim,hTot,mTot,tot;
+    public long calcularHoras(FormularioA3 a3) {
+        int hIni, hFim, mIni, mFim, hTot, mTot, tot;
+        int tempoDia = 1000 * 60 * 60 * 24;
+
         Calendar ini = Calendar.getInstance();
         Calendar fim = Calendar.getInstance();
 
         ini.setTime(a3.getAtividade().getInicio());
         fim.setTime(a3.getAtividade().getFim());
 
-        hIni =  ini.get(Calendar.HOUR);
+        long diferanca = fim.getTimeInMillis() - ini.getTimeInMillis();
+        long diasDiferenca = diferanca / tempoDia;
+
+        hIni = ini.get(Calendar.HOUR);
         hFim = fim.get(Calendar.HOUR);
-        
+
         mIni = ini.get(Calendar.MINUTE);
         mFim = fim.get(Calendar.MINUTE);
-        
-        hTot = hFim-hIni;
-        
+
+        hTot = hFim - hIni;
+
         if (mFim >= mIni) {
             mTot = mFim - mIni;
-        }else{
+        } else {
             mTot = mIni - mFim;
         }
-        
-        tot = hTot + (mTot/60);
-        return tot;
-        
+
+        tot = hTot + (mTot / 60);
+        return diasDiferenca * tot;
+
     }
 }

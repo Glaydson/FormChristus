@@ -53,7 +53,7 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
     @PostConstruct
     public void iniciar() {
         coordenador = (Coordenador) beanUtilitario.getRegistroDoMap("coordenador", new Coordenador());
-        if (coordenador.getmatricula() != null) {
+        if (coordenador.getMatricula() != null) {
             pessoa = coordenador.getPessoa();
             sexo = pessoa.getSexo();
             renderMatricula = true;
@@ -73,7 +73,7 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
             pessoa.setSexo(sexo);
             coordenador.setPessoa(pessoa);
             controller.salvarouAtualizar(coordenador);
-            usuarioController.registrarUsuario(coordenador.getmatricula(), TipoPessoa.COORDENADOR, coordenador.getCurso());
+            usuarioController.registrarUsuario(coordenador.getMatricula(), TipoPessoa.COORDENADOR, coordenador.getCurso());
             BeanMenssagem.addMenssagemInfo(beanUtilitario.getMsg("cadastro"));
             iniciar();
         } catch (Exception ex) {
@@ -85,6 +85,10 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
 
     public void listarNome() {
         listaCoordenadores = controller.listarNome(getValorBusca());
+    }
+
+    public Sexo[] sexos() {
+        return Sexo.values();
     }
 
     @Override
@@ -102,20 +106,12 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public BeanUtilitario getBeanUtilitario() {
-        return beanUtilitario;
+    public Coordenador getCoordenador() {
+        return coordenador;
     }
 
-    public void setBeanUtilitario(BeanUtilitario beanUtilitario) {
-        this.beanUtilitario = beanUtilitario;
-    }
-
-    public UsuarioController getUsuarioController() {
-        return usuarioController;
-    }
-
-    public void setUsuarioController(UsuarioController usuarioController) {
-        this.usuarioController = usuarioController;
+    public void setCoordenador(Coordenador coordenador) {
+        this.coordenador = coordenador;
     }
 
     public Pessoa getPessoa() {
@@ -126,10 +122,6 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
         this.pessoa = pessoa;
     }
 
-    public Sexo[] sexos() {
-        return Sexo.values();
-    }
-
     public Sexo getSexo() {
         return sexo;
     }
@@ -137,7 +129,6 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
-
 
     public boolean isRenderMatricula() {
         return renderMatricula;
@@ -155,14 +146,6 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
         this.usuario = usuario;
     }
 
-    public Coordenador getCoordenador() {
-        return coordenador;
-    }
-
-    public void setCoordenador(Coordenador coordenador) {
-        this.coordenador = coordenador;
-    }
-
     public List<Coordenador> getListaCoordenadores() {
         return listaCoordenadores;
     }
@@ -171,5 +154,4 @@ public class CoordenadorMb extends BeanGenerico<Coordenador> implements Serializ
         this.listaCoordenadores = listaCoordenadores;
     }
 
- 
 }
