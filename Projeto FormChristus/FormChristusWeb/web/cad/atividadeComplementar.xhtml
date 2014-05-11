@@ -76,9 +76,9 @@
 
         </h:panelGrid>
         <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
-            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{atividadeComplementarMb.salvar()}"   update="grd"/>
+            <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{atividadeComplementarMb.salvar()}"   update="grd"/>
             <p:commandButton icon="ui-icon-search" value="Listagem" immediate="true" action="#{beanUtilitario.redirecionarPagina(navegacao['lisAtividadeComp'], label['lisAtividadeComp'])}" />
-            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" action="#{atividadeComplementarMb.iniciar()}" >
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" actionListener="#{atividadeComplementarMb.iniciar()}" >
                 <p:resetInput target=":frmGeral:grd"/>
             </p:commandButton>
         </h:panelGrid>

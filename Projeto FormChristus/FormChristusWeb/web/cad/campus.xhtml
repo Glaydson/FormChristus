@@ -30,7 +30,7 @@
         <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
             <p:commandButton value="Salvar" id="btnSalvar" icon="ui-icon-disk" actionListener="#{campusMb.salvar()}" update="grd"/>
             <p:commandButton icon="ui-icon-search" action="#{beanUtilitario.redirecionarPagina(navegacao['lisCampus'], label['lisCampus'])}" immediate="true" value="Listagem" />
-            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" action="#{campusMb.iniciar()}" >
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" actionListener="#{campusMb.iniciar()}" >
                 <p:resetInput target=":frmGeral:grd"/>
             </p:commandButton>
         </h:panelGrid>

@@ -23,7 +23,7 @@ and open the template in the editor.
                         <h:panelGrid>
                             <p:spacer width="15"/>
                             <h:panelGrid columns="2">
-                                <p:commandButton action="#{formularioA4Mb.listarPorAluno(formularioA4Mb.formularioA4.aluno)}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
+                                <p:commandButton actionListener="#{formularioA4Mb.listarPorAluno(formularioA4Mb.formularioA4.aluno)}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
                                 <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['formA4'], label['formA4'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
                             </h:panelGrid>
                         </h:panelGrid>
@@ -50,7 +50,7 @@ and open the template in the editor.
                     </p:column>
                     <p:column headerText="Ação" width="10%">
                         <p:commandButton icon="ui-icon-pencil" style="width: 20px;height: 20px;" immediate="true" title="Editar" action="#{beanUtilitario.redirecionar(navegacao['formA4'], 'a4', t, label['formA4'])}"/>
-                        <p:commandButton icon="ui-icon-print" id="btnImprimir" style="width: 20px;height: 20px;" onclick="bui.show()" immediate="true" title="Imprimir" action="#{formularioA4Mb.selecionarFomulario(t)}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf');bui.hide()">
+                        <p:commandButton icon="ui-icon-print" id="btnImprimir" style="width: 20px;height: 20px;" onclick="bui.show()" immediate="true" title="Imprimir" actionListener="#{formularioA4Mb.selecionarFomulario(t)}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf');bui.hide()">
                             <f:setPropertyActionListener value="#{t}" target="#{formularioA4Mb.formularioA4}"/>
                         </p:commandButton>
 

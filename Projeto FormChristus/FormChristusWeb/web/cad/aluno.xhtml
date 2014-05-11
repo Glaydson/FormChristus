@@ -76,9 +76,10 @@ and open the template in the editor.
 
         </h:panelGrid>
         <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
-            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{alunoMb.salvar()}"   update=":frmGeral"/>
+            <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{alunoMb.atualizar()}"  rendered="#{not alunoMb.editar}" update=":frmGeral"/>
+            <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{alunoMb.salvar()}"  rendered="#{alunoMb.editar}" update=":frmGeral"/>
             <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisAlunos'], label['lisAlunos'])}" immediate="true" />
-            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" immediate="true" update=":frmGeral:grd" action="#{alunoMb.iniciar()}" >
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" immediate="true" update=":frmGeral:grd" actionListener="#{alunoMb.iniciar()}" >
                 <p:resetInput target=":frmGeral:grd"/>
             </p:commandButton>
         </h:panelGrid>
@@ -86,11 +87,11 @@ and open the template in the editor.
     </ui:define>
     <ui:define name="dialogs">
         <comp:consultaCursos/>
-</ui:define>
+    </ui:define>
 
-<ui:define name="comando">
-    <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" update=":frmGeral:grdCur" title="Selecionar"   oncomplete="dialogConsultaCurso.hide();">
-        <f:setPropertyActionListener value="#{t}" target="#{alunoMb.aluno.curso}"/>
-    </p:commandButton>
-</ui:define>
+    <ui:define name="comando">
+        <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" update=":frmGeral:grdCur" title="Selecionar"   oncomplete="dialogConsultaCurso.hide();">
+            <f:setPropertyActionListener value="#{t}" target="#{alunoMb.aluno.curso}"/>
+        </p:commandButton>
+    </ui:define>
 </ui:composition>

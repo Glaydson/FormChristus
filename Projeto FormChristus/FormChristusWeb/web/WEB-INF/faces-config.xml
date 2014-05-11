@@ -17,7 +17,7 @@
         <message-bundle>label</message-bundle>
     </application>
     <application>
-        <action-listener>org.primefaces.application.DialogActionListener</action-listener>
+        <actionListener-listener>org.primefaces.application.DialogActionListener</actionListener-listener>
         <navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
         <view-handler>org.primefaces.application.DialogViewHandler</view-handler>
       

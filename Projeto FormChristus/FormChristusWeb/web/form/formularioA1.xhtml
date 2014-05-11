@@ -196,7 +196,7 @@
 
                     </h:panelGrid>
                     <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
-                        <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA1Mb.salvar()}"    update=":frmGeral"/>
+                        <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  actionListener="#{formularioA1Mb.salvar()}"    update=":frmGeral"/>
                         <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'], label['lisFormA3'])}" immediate="true" />
                     </h:panelGrid>
                 </p:panel>

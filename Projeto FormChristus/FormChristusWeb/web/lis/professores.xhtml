@@ -26,7 +26,7 @@ and open the template in the editor.
                         <h:panelGrid>
                             <p:spacer width="15"/>
                             <h:panelGrid columns="2">
-                                <p:commandButton action="#{professorMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
+                                <p:commandButton actionListener="#{professorMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
                                 <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['cadProfessor'], label['cadProfessor'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
                             </h:panelGrid>
                         </h:panelGrid>

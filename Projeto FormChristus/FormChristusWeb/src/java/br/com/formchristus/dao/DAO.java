@@ -12,8 +12,6 @@ import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
 
 /**
  *

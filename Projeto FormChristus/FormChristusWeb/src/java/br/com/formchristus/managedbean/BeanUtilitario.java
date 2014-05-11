@@ -4,7 +4,10 @@
  */
 package br.com.formchristus.managedbean;
 
+import br.com.formchristus.controller.AlunoController;
 import br.com.formchristus.controller.UsuarioController;
+import br.com.formchristus.enumerated.TipoPessoa;
+import br.com.formchristus.modelo.Aluno;
 import br.com.formchristus.modelo.Usuario;
 import java.io.IOException;
 import java.io.Serializable;
@@ -34,6 +37,9 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class BeanUtilitario implements Serializable {
 
+    @EJB
+    private AlunoController alunoController;
+    private Aluno aluno;
     @EJB
     private UsuarioController usuarioController;
     private Usuario usuarioLogado;
@@ -66,9 +72,11 @@ public class BeanUtilitario implements Serializable {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             ExternalContext external = context.getExternalContext();
-
             usuarioLogado = (Usuario) usuarioController.carregar(external.getRemoteUser());
-
+            if (usuarioLogado.getTipoPessoa().equals(TipoPessoa.ALUNO)) {
+                 aluno = (Aluno) alunoController.carregar(external.getRemoteUser());
+                
+            }
         } catch (PersistenceException ex) {
             Logger.getLogger(BeanUtilitario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (EJBException ex) {
@@ -187,6 +195,14 @@ public class BeanUtilitario implements Serializable {
 
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
 }

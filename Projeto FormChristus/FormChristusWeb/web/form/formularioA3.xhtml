@@ -206,7 +206,7 @@
                         </h:panelGrid>
                     </h:panelGrid>
                     <h:panelGrid  columns="4" cellspacing="22" cellpadding="2">
-                        <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  action="#{formularioA3Mb.salvar()}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf')"   update=":frmGeral"/>
+                        <p:commandButton id="btnSalvar" value="Salvar" icon="ui-icon-disk"  actionListener="#{formularioA3Mb.salvar()}" oncomplete="popup('/FormChristusWeb/RelatorioServlet.pdf')"   update=":frmGeral"/>
                         <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisFormA3'], label['lisFormA3'])}" immediate="true" />
                     </h:panelGrid>
                 </p:panel>

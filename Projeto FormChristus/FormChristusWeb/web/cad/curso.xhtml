@@ -61,9 +61,9 @@
 
         </h:panelGrid>
         <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
-            <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{cursoMb.salvar()}"   update="grd"/>
+            <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{cursoMb.salvar()}"   update="grd"/>
             <p:commandButton icon="ui-icon-search" value="Listagem" immediate="true" action="#{beanUtilitario.redirecionarPagina(navegacao['lisCurso'], label['lisCurso'])}" />
-            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" action="#{cursoMb.iniciar()}" >
+            <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" update=":frmGeral:grd" immediate="true" actionListener="#{cursoMb.iniciar()}" >
                 <p:resetInput target=":frmGeral:grd"/>
             </p:commandButton>
         </h:panelGrid>

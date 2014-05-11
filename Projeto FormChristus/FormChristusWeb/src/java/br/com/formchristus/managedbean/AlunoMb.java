@@ -38,13 +38,13 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
     private AlunoController controller;
     @EJB
     private UsuarioController usuarioController;
-    private Usuario usuario;
     private Aluno aluno;
     private List<Aluno> listaAlunos;
     private Pessoa pessoa;
     private Sexo sexo;
-    private boolean  ativo;
+    private boolean ativo;
     private boolean renderMatricula;
+    private boolean editar;
 
     public AlunoMb() {
         super(Aluno.class);
@@ -53,30 +53,35 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
     @PostConstruct
     @Override
     public void iniciar() {
+        editar = true;
+        ativo = true;
         aluno = (Aluno) beanUtilitario.getRegistroDoMap("aluno", new Aluno());
         if (aluno.getMatricula() != null) {
             pessoa = aluno.getPessoa();
             sexo = pessoa.getSexo();
             ativo = pessoa.isAtivo();
+            editar = false;
             renderMatricula = true;
         } else {
             pessoa = new Pessoa();
             renderMatricula = false;
-            
+
         }
-        usuario = new Usuario();
         listaAlunos = new ArrayList<>();
 
     }
 
     @Override
     public void salvar() {
-        try {           
+        try {
             pessoa.setAtivo(ativo);
             pessoa.setSexo(sexo);
             aluno.setPessoa(pessoa);
-            controller.salvarouAtualizar(aluno);
-            usuarioController.registrarUsuario(aluno.getMatricula(),TipoPessoa.ALUNO,aluno.getCurso());
+            controller.salvar(aluno);
+            if (editar) {
+                usuarioController.registrarUsuario(aluno.getMatricula(), TipoPessoa.ALUNO, aluno.getCurso());
+
+            }
             BeanMenssagem.addMenssagemInfo(beanUtilitario.getMsg("cadastro"));
             iniciar();
         } catch (Exception ex) {
@@ -84,8 +89,26 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
             Logger.getLogger(AlunoMb.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void listarNome(){
+
+    public void atualizar() {
+        try {
+            pessoa.setAtivo(ativo);
+            pessoa.setSexo(sexo);
+            aluno.setPessoa(pessoa);
+            controller.salvarouAtualizar(aluno);
+            if (editar) {
+                usuarioController.registrarUsuario(aluno.getMatricula(), TipoPessoa.ALUNO, aluno.getCurso());
+
+            }
+            BeanMenssagem.addMenssagemInfo(beanUtilitario.getMsg("cadastro"));
+            iniciar();
+        } catch (Exception ex) {
+            BeanMenssagem.addMenssagemErro(beanUtilitario.getMsg("erro"));
+            Logger.getLogger(AlunoMb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void listarNome() {
         listaAlunos = controller.listarNome(getValorBusca());
     }
 
@@ -104,10 +127,10 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Sexo[] sexos(){
-        return  Sexo.values();
+    public Sexo[] sexos() {
+        return Sexo.values();
     }
-     
+
     public Aluno getAluno() {
         return aluno;
     }
@@ -154,6 +177,14 @@ public class AlunoMb extends BeanGenerico<Aluno> implements Serializable {
 
     public void setRenderMatricula(boolean renderMatricula) {
         this.renderMatricula = renderMatricula;
+    }
+
+    public boolean isEditar() {
+        return editar;
+    }
+
+    public void setEditar(boolean editar) {
+        this.editar = editar;
     }
 
 }

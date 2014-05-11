@@ -79,7 +79,7 @@ and open the template in the editor.
                                         <h:outputText value="#{t.tipoCurso}"/>
                                     </p:column>
                                     <p:column headerText="Ação">
-                                        <p:commandButton icon="ui-icon-trash" style="width: 20px;height: 20px;" immediate="true" action="#{professorMb.removerCurso(t)}" update=":frmGeral:grdCur" title="Selecionar"   />
+                                        <p:commandButton icon="ui-icon-trash" style="width: 20px;height: 20px;" immediate="true" actionListener="#{professorMb.removerCurso(t)}" update=":frmGeral:grdCur" title="Selecionar"   />
                                     </p:column>
                                 </p:dataTable>
                             </h:panelGrid>
@@ -89,9 +89,9 @@ and open the template in the editor.
 
             </h:panelGrid>
             <h:panelGrid  columns="3" cellspacing="22" cellpadding="2">
-                <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{professorMb.salvar()}"   update=":frmGeral"/>
+                <p:commandButton value="Salvar" icon="ui-icon-disk" actionListener="#{professorMb.salvar()}"   update=":frmGeral"/>
                 <p:commandButton icon="ui-icon-search" value="Listagem"  action="#{beanUtilitario.redirecionarPagina(navegacao['lisProfessores'], label['lisProfessores'])}" immediate="true" />
-                <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" immediate="true" update=":frmGeral:grd" action="#{professorMb.iniciar()}" >
+                <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpar" immediate="true" update=":frmGeral:grd" actionListener="#{professorMb.iniciar()}" >
                     <p:resetInput target=":frmGeral:grd"/>
                 </p:commandButton>
             </h:panelGrid>
@@ -102,6 +102,6 @@ and open the template in the editor.
     </ui:define>
 
     <ui:define name="comando">
-        <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" action="#{professorMb.addCurco(t)}" update=":frmGeral:grdCur" title="Selecionar"   />
+        <p:commandButton icon="ui-icon-check" style="width: 20px;height: 20px;" immediate="true" actionListener="#{professorMb.addCurco(t)}" update=":frmGeral:grdCur" title="Selecionar"   />
     </ui:define>
 </ui:composition>

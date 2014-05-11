@@ -25,7 +25,7 @@
                             <h:panelGrid>
                                 <p:spacer width="15"/>
                                 <h:panelGrid columns="2">
-                                    <p:commandButton action="#{cursoMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
+                                    <p:commandButton actionListener="#{cursoMb.listarNome()}" id="btnListar"  update="tabela" value="Consultar" icon="ui-icon-search"/>
                                     <p:commandButton action="#{beanUtilitario.redirecionarPagina(navegacao['cadCurso'], label['cadCurso'])}" immediate="true" value="Incluir" icon="ui-icon-plus"/>
                                 </h:panelGrid>
                             </h:panelGrid>
